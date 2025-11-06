@@ -16,7 +16,7 @@ require (
 	github.com/deneonet/benc v1.0.2
 	github.com/glycerine/go-capnproto v0.0.0-20190118050403-2d07de3aa7fc
 	github.com/gogo/protobuf v1.3.2
-	github.com/google/flatbuffers v23.1.21+incompatible
+	github.com/google/flatbuffers v25.9.23+incompatible
 	github.com/hprose/hprose-go v0.0.0-20161031134501-83de97da5004
 	github.com/hprose/hprose-golang v2.0.4+incompatible
 	github.com/ikkerens/ikeapack v1.5.1

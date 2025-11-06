@@ -1,0 +1,8 @@
+table FlatBuffer25A {
+	name:string;
+	birth_day:long;
+	phone:string;
+	siblings:int;
+	spouse:bool;
+	money:double;
+}
