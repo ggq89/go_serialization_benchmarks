@@ -2,17 +2,16 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v6.32.0
-// source: structdef-protobuf.proto
+// source: structdef-protobuf3.proto
 
 package protobuf3
 
 import (
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
-
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -22,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ProtobufGo struct {
+type Protobuf3Go struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	BirthDay      int64                  `protobuf:"varint,2,opt,name=birthDay,proto3" json:"birthDay,omitempty"`
@@ -34,21 +33,21 @@ type ProtobufGo struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ProtobufGo) Reset() {
-	*x = ProtobufGo{}
-	mi := &file_structdef_protobuf_proto_msgTypes[0]
+func (x *Protobuf3Go) Reset() {
+	*x = Protobuf3Go{}
+	mi := &file_structdef_protobuf3_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ProtobufGo) String() string {
+func (x *Protobuf3Go) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ProtobufGo) ProtoMessage() {}
+func (*Protobuf3Go) ProtoMessage() {}
 
-func (x *ProtobufGo) ProtoReflect() protoreflect.Message {
-	mi := &file_structdef_protobuf_proto_msgTypes[0]
+func (x *Protobuf3Go) ProtoReflect() protoreflect.Message {
+	mi := &file_structdef_protobuf3_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,60 +58,59 @@ func (x *ProtobufGo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ProtobufGo.ProtoReflect.Descriptor instead.
-func (*ProtobufGo) Descriptor() ([]byte, []int) {
-	return file_structdef_protobuf_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use Protobuf3Go.ProtoReflect.Descriptor instead.
+func (*Protobuf3Go) Descriptor() ([]byte, []int) {
+	return file_structdef_protobuf3_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ProtobufGo) GetName() string {
+func (x *Protobuf3Go) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *ProtobufGo) GetBirthDay() int64 {
+func (x *Protobuf3Go) GetBirthDay() int64 {
 	if x != nil {
 		return x.BirthDay
 	}
 	return 0
 }
 
-func (x *ProtobufGo) GetPhone() string {
+func (x *Protobuf3Go) GetPhone() string {
 	if x != nil {
 		return x.Phone
 	}
 	return ""
 }
 
-func (x *ProtobufGo) GetSiblings() int32 {
+func (x *Protobuf3Go) GetSiblings() int32 {
 	if x != nil {
 		return x.Siblings
 	}
 	return 0
 }
 
-func (x *ProtobufGo) GetSpouse() bool {
+func (x *Protobuf3Go) GetSpouse() bool {
 	if x != nil {
 		return x.Spouse
 	}
 	return false
 }
 
-func (x *ProtobufGo) GetMoney() float64 {
+func (x *Protobuf3Go) GetMoney() float64 {
 	if x != nil {
 		return x.Money
 	}
 	return 0
 }
 
-var File_structdef_protobuf_proto protoreflect.FileDescriptor
+var File_structdef_protobuf3_proto protoreflect.FileDescriptor
 
-const file_structdef_protobuf_proto_rawDesc = "" +
+const file_structdef_protobuf3_proto_rawDesc = "" +
 	"\n" +
-	"\x18structdef-protobuf.proto\"\x9c\x01\n" +
-	"\n" +
-	"ProtobufGo\x12\x12\n" +
+	"\x19structdef-protobuf3.proto\"\x9d\x01\n" +
+	"\vProtobuf3Go\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1a\n" +
 	"\bbirthDay\x18\x02 \x01(\x03R\bbirthDay\x12\x14\n" +
 	"\x05phone\x18\x03 \x01(\tR\x05phone\x12\x1a\n" +
@@ -121,22 +119,22 @@ const file_structdef_protobuf_proto_rawDesc = "" +
 	"\x05money\x18\x06 \x01(\x01R\x05moneyB\rZ\v.;protobuf3b\x06proto3"
 
 var (
-	file_structdef_protobuf_proto_rawDescOnce sync.Once
-	file_structdef_protobuf_proto_rawDescData []byte
+	file_structdef_protobuf3_proto_rawDescOnce sync.Once
+	file_structdef_protobuf3_proto_rawDescData []byte
 )
 
-func file_structdef_protobuf_proto_rawDescGZIP() []byte {
-	file_structdef_protobuf_proto_rawDescOnce.Do(func() {
-		file_structdef_protobuf_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_structdef_protobuf_proto_rawDesc), len(file_structdef_protobuf_proto_rawDesc)))
+func file_structdef_protobuf3_proto_rawDescGZIP() []byte {
+	file_structdef_protobuf3_proto_rawDescOnce.Do(func() {
+		file_structdef_protobuf3_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_structdef_protobuf3_proto_rawDesc), len(file_structdef_protobuf3_proto_rawDesc)))
 	})
-	return file_structdef_protobuf_proto_rawDescData
+	return file_structdef_protobuf3_proto_rawDescData
 }
 
-var file_structdef_protobuf_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_structdef_protobuf_proto_goTypes = []any{
-	(*ProtobufGo)(nil), // 0: ProtobufGo
+var file_structdef_protobuf3_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_structdef_protobuf3_proto_goTypes = []any{
+	(*Protobuf3Go)(nil), // 0: Protobuf3Go
 }
-var file_structdef_protobuf_proto_depIdxs = []int32{
+var file_structdef_protobuf3_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -144,26 +142,26 @@ var file_structdef_protobuf_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_structdef_protobuf_proto_init() }
-func file_structdef_protobuf_proto_init() {
-	if File_structdef_protobuf_proto != nil {
+func init() { file_structdef_protobuf3_proto_init() }
+func file_structdef_protobuf3_proto_init() {
+	if File_structdef_protobuf3_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_structdef_protobuf_proto_rawDesc), len(file_structdef_protobuf_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_structdef_protobuf3_proto_rawDesc), len(file_structdef_protobuf3_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_structdef_protobuf_proto_goTypes,
-		DependencyIndexes: file_structdef_protobuf_proto_depIdxs,
-		MessageInfos:      file_structdef_protobuf_proto_msgTypes,
+		GoTypes:           file_structdef_protobuf3_proto_goTypes,
+		DependencyIndexes: file_structdef_protobuf3_proto_depIdxs,
+		MessageInfos:      file_structdef_protobuf3_proto_msgTypes,
 	}.Build()
-	File_structdef_protobuf_proto = out.File
-	file_structdef_protobuf_proto_goTypes = nil
-	file_structdef_protobuf_proto_depIdxs = nil
+	File_structdef_protobuf3_proto = out.File
+	file_structdef_protobuf3_proto_goTypes = nil
+	file_structdef_protobuf3_proto_depIdxs = nil
 }

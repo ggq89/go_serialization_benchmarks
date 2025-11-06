@@ -1,6 +1,8 @@
 module github.com/alecthomas/go_serialization_benchmarks
 
-go 1.22.4
+go 1.23
+
+toolchain go1.24.5
 
 require (
 	github.com/200sc/bebop v0.5.0
@@ -32,7 +34,7 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.3.5
 	go.dedis.ch/protobuf v1.0.11
 	go.mongodb.org/mongo-driver v1.11.1
-	google.golang.org/protobuf v1.34.2
+	google.golang.org/protobuf v1.36.10
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22
 	wellquite.org/bebop v0.0.0-20231109192402-a92af83691ec
 )
@@ -44,7 +46,7 @@ require (
 	github.com/glycerine/goconvey v0.0.0-20190410193231-58a59202ab31 // indirect
 	github.com/glycerine/rbtree v0.0.0-20190406191118-ceb71889d809 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/google/go-cmp v0.5.9 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/uuid v1.3.1 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20210603182125-eeedf4a0e899 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect

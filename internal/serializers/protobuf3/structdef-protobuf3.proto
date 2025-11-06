@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = ".;protobuf3";
 
-message ProtobufGo{
+message Protobuf3Go{
   string name = 1;
   int64 birthDay = 2;
   string phone = 3;

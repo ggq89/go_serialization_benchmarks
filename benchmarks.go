@@ -28,6 +28,7 @@ import (
 	msgpackvmihailenco "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/msgpack_vmihailenco"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/mus"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf"
+	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf3"
 	protobufdedis "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf_dedis"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/pulsar"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/sereal"
@@ -544,7 +545,7 @@ var benchmarkCases = []BenchmarkCase{
 	}, {
 		Name: "protobuf3",
 		URL:  "https://github.com/protocolbuffers/protobuf-go",
-		New:  fastape.NewTape,
+		New:  protobuf3.NewProtobufSerializer,
 
 		UnsafeStringUnmarshal: true,
 		TimeSupport:           TSUnixNs,
