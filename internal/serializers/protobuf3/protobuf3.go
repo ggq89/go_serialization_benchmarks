@@ -48,7 +48,7 @@ func (s *Protobuf3) Unmarshal(d []byte, o interface{}) error {
 	return nil
 }
 
-func NewProtobufSerializer() goserbench.Serializer {
+func NewProtobuf3Serializer() goserbench.Serializer {
 	return &Protobuf3{
 		marshaller:   proto.Marshal,
 		unmarshaller: proto.Unmarshal,

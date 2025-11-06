@@ -15,6 +15,7 @@ import (
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/fastape"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/fastjson"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/flatbuffers"
+	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/flatbuffers25"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gencode"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gogo"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gotiny"
@@ -545,10 +546,25 @@ var benchmarkCases = []BenchmarkCase{
 	}, {
 		Name: "protobuf3",
 		URL:  "https://github.com/protocolbuffers/protobuf-go",
-		New:  protobuf3.NewProtobufSerializer,
+		New:  protobuf3.NewProtobuf3Serializer,
 
-		UnsafeStringUnmarshal: true,
-		TimeSupport:           TSUnixNs,
+		TimeSupport: TSRFC3339Ns,
+		APIKind:     AKCodegen,
+	}, {
+		Name: "flatbuffers25",
+		URL:  "https://github.com/google/flatbuffers/tree/master/go",
+		New:  flatbuffers25.NewFlatBuffers25Serializer,
+
+		TimeSupport: TSNoSupport,
+		APIKind:     AKCodegen,
+	}, {
+		Name: "flatbuffers25/unsafe_reuse",
+		URL:  "https://github.com/google/flatbuffers/tree/master/go",
+		New:  flatbuffers25.NewFlatBuffers25UnsafeReuseSerializer,
+
+		TimeSupport:           TSNoSupport,
 		APIKind:               AKCodegen,
+		UnsafeStringUnmarshal: true,
+		BufferReuseMarshal:    true,
 	},
 }

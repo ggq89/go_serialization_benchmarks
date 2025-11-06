@@ -8,12 +8,12 @@ import (
 	flatbuffers "github.com/google/flatbuffers/go"
 )
 
-type FlatBufferSerializer struct {
+type FlatBuffer25Serializer struct {
 	unsafeReuse bool
 	builder     *flatbuffers.Builder
 }
 
-func (s *FlatBufferSerializer) Marshal(o interface{}) ([]byte, error) {
+func (s *FlatBuffer25Serializer) Marshal(o interface{}) ([]byte, error) {
 	a := o.(*goserbench.SmallStruct)
 	builder := s.builder
 	if !s.unsafeReuse {
@@ -35,7 +35,7 @@ func (s *FlatBufferSerializer) Marshal(o interface{}) ([]byte, error) {
 	return builder.FinishedBytes(), nil
 }
 
-func (s *FlatBufferSerializer) Unmarshal(d []byte, i interface{}) error {
+func (s *FlatBuffer25Serializer) Unmarshal(d []byte, i interface{}) error {
 	a := i.(*goserbench.SmallStruct)
 	o := FlatBuffer25A{}
 	o.Init(d, flatbuffers.GetUOffsetT(d))
@@ -53,13 +53,13 @@ func (s *FlatBufferSerializer) Unmarshal(d []byte, i interface{}) error {
 	return nil
 }
 
-func NewFlatBuffersSerializer() goserbench.Serializer {
-	return &FlatBufferSerializer{builder: flatbuffers.NewBuilder(0), unsafeReuse: false}
+func NewFlatBuffers25Serializer() goserbench.Serializer {
+	return &FlatBuffer25Serializer{builder: flatbuffers.NewBuilder(0), unsafeReuse: false}
 }
 
-func NewFlatBuffersUnsafeReuseSerializer() goserbench.Serializer {
+func NewFlatBuffers25UnsafeReuseSerializer() goserbench.Serializer {
 	const maxSerSize = 128
-	return &FlatBufferSerializer{builder: flatbuffers.NewBuilder(maxSerSize), unsafeReuse: true}
+	return &FlatBuffer25Serializer{builder: flatbuffers.NewBuilder(maxSerSize), unsafeReuse: true}
 }
 
 // unsafeSliceToString converts a byte slice to a string in an unsafe way
