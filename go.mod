@@ -1,10 +1,11 @@
 module github.com/alecthomas/go_serialization_benchmarks
 
-go 1.23
+go 1.24.0
 
 toolchain go1.24.5
 
 require (
+	capnproto.org/go/capnp/v3 v3.1.0-alpha.2
 	github.com/200sc/bebop v0.5.0
 	github.com/Sereal/Sereal v0.0.0-20230201113653-fa72c87b650e
 	github.com/alecthomas/binary v0.0.0-20221018225505-74871811ee56
@@ -28,7 +29,7 @@ require (
 	github.com/prysmaticlabs/go-ssz v0.0.0-20190827151743-72881c4223d8
 	github.com/shamaton/msgpack/v2 v2.1.1
 	github.com/shamaton/msgpackgen v0.3.0
-	github.com/tinylib/msgp v1.1.8
+	github.com/tinylib/msgp v1.1.9
 	github.com/ugorji/go/codec v1.2.9
 	github.com/valyala/fastjson v1.6.4
 	github.com/vmihailenco/msgpack/v5 v5.3.5
@@ -39,10 +40,9 @@ require (
 	wellquite.org/bebop v0.0.0-20231109192402-a92af83691ec
 )
 
-require github.com/mus-format/common-go v0.0.0-20240427160332-fda7f59c1da2 // indirect
-
 require (
 	github.com/DataDog/zstd v1.5.2 // indirect
+	github.com/colega/zeropool v0.0.0-20230505084239-6fb4a4f75381 // indirect
 	github.com/glycerine/goconvey v0.0.0-20190410193231-58a59202ab31 // indirect
 	github.com/glycerine/rbtree v0.0.0-20190406191118-ceb71889d809 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
@@ -56,12 +56,14 @@ require (
 	github.com/minio/sha256-simd v0.1.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/mus-format/common-go v0.0.0-20240427160332-fda7f59c1da2 // indirect
 	github.com/mus-format/mus-go v0.3.0
 	github.com/philhofer/fwd v1.1.2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/protolambda/zssz v0.1.1 // indirect
 	github.com/prysmaticlabs/go-bitfield v0.0.0-20190825002834-fb724e897364 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
-	golang.org/x/exp v0.0.0-20231110203233-9a3e6036ecaa // indirect
+	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
+	golang.org/x/sync v0.7.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
