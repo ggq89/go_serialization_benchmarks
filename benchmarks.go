@@ -541,5 +541,13 @@ var benchmarkCases = []BenchmarkCase{
 		UnsafeStringUnmarshal: true,
 		TimeSupport:           TSUnixNs,
 		APIKind:               AKManual,
+	}, {
+		Name: "protobuf3",
+		URL:  "https://github.com/protocolbuffers/protobuf-go",
+		New:  fastape.NewTape,
+
+		UnsafeStringUnmarshal: true,
+		TimeSupport:           TSUnixNs,
+		APIKind:               AKCodegen,
 	},
 }
