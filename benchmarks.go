@@ -10,6 +10,7 @@ import (
 	binaryalecthomas "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/binary_alecthomas"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/bson"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/capnproto"
+	capnprotov3 "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/capnproto_v3"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/colfer"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/easyjson"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/fastape"
@@ -566,5 +567,12 @@ var benchmarkCases = []BenchmarkCase{
 		APIKind:               AKCodegen,
 		UnsafeStringUnmarshal: true,
 		BufferReuseMarshal:    true,
+	}, {
+		Name: "capnproto_v3",
+		URL:  "https://github.com/capnproto/go-capnp",
+		New:  capnprotov3.NewCapNProtoSerializer,
+
+		TimeSupport: TSNoSupport,
+		APIKind:     AKCodegen,
 	},
 }
