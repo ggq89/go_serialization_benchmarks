@@ -4,10 +4,11 @@ package shamaton
 
 import (
 	"fmt"
+	"time"
+
 	msgpack "github.com/shamaton/msgpackgen/msgpack"
 	dec "github.com/shamaton/msgpackgen/msgpack/dec"
 	enc "github.com/shamaton/msgpackgen/msgpack/enc"
-	"time"
 )
 
 // RegisterGeneratedResolver registers generated resolver.
@@ -29,12 +30,12 @@ func ___encodeAsArray(i interface{}) ([]byte, error) {
 	switch v := i.(type) {
 	case A:
 		encoder := enc.NewEncoder()
-		size, err := ___calcArraySizeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder)
+		size, err := ___calcArraySizeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeArrayA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder, 0)
+		b, offset, err := ___encodeArrayA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -44,12 +45,12 @@ func ___encodeAsArray(i interface{}) ([]byte, error) {
 		return b, err
 	case *A:
 		encoder := enc.NewEncoder()
-		size, err := ___calcArraySizeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder)
+		size, err := ___calcArraySizeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeArrayA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder, 0)
+		b, offset, err := ___encodeArrayA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -59,12 +60,12 @@ func ___encodeAsArray(i interface{}) ([]byte, error) {
 		return b, err
 	case NoTimeA:
 		encoder := enc.NewEncoder()
-		size, err := ___calcArraySizeNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder)
+		size, err := ___calcArraySizeNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeArrayNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder, 0)
+		b, offset, err := ___encodeArrayNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -74,12 +75,12 @@ func ___encodeAsArray(i interface{}) ([]byte, error) {
 		return b, err
 	case *NoTimeA:
 		encoder := enc.NewEncoder()
-		size, err := ___calcArraySizeNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder)
+		size, err := ___calcArraySizeNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeArrayNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder, 0)
+		b, offset, err := ___encodeArrayNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -89,12 +90,12 @@ func ___encodeAsArray(i interface{}) ([]byte, error) {
 		return b, err
 	case NoTimeNoStringNoFloatA:
 		encoder := enc.NewEncoder()
-		size, err := ___calcArraySizeNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder)
+		size, err := ___calcArraySizeNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeArrayNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder, 0)
+		b, offset, err := ___encodeArrayNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -104,12 +105,12 @@ func ___encodeAsArray(i interface{}) ([]byte, error) {
 		return b, err
 	case *NoTimeNoStringNoFloatA:
 		encoder := enc.NewEncoder()
-		size, err := ___calcArraySizeNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder)
+		size, err := ___calcArraySizeNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeArrayNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder, 0)
+		b, offset, err := ___encodeArrayNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -118,7 +119,7 @@ func ___encodeAsArray(i interface{}) ([]byte, error) {
 		}
 		return b, err
 	}
-	return nil, fmt.Errorf("use strict option : undefined type")
+	return nil, nil
 }
 
 // encodeAsMap
@@ -126,12 +127,12 @@ func ___encodeAsMap(i interface{}) ([]byte, error) {
 	switch v := i.(type) {
 	case A:
 		encoder := enc.NewEncoder()
-		size, err := ___calcMapSizeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder)
+		size, err := ___calcMapSizeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeMapA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder, 0)
+		b, offset, err := ___encodeMapA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -141,12 +142,12 @@ func ___encodeAsMap(i interface{}) ([]byte, error) {
 		return b, err
 	case *A:
 		encoder := enc.NewEncoder()
-		size, err := ___calcMapSizeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder)
+		size, err := ___calcMapSizeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeMapA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder, 0)
+		b, offset, err := ___encodeMapA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -156,12 +157,12 @@ func ___encodeAsMap(i interface{}) ([]byte, error) {
 		return b, err
 	case NoTimeA:
 		encoder := enc.NewEncoder()
-		size, err := ___calcMapSizeNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder)
+		size, err := ___calcMapSizeNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeMapNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder, 0)
+		b, offset, err := ___encodeMapNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -171,12 +172,12 @@ func ___encodeAsMap(i interface{}) ([]byte, error) {
 		return b, err
 	case *NoTimeA:
 		encoder := enc.NewEncoder()
-		size, err := ___calcMapSizeNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder)
+		size, err := ___calcMapSizeNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeMapNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder, 0)
+		b, offset, err := ___encodeMapNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -186,12 +187,12 @@ func ___encodeAsMap(i interface{}) ([]byte, error) {
 		return b, err
 	case NoTimeNoStringNoFloatA:
 		encoder := enc.NewEncoder()
-		size, err := ___calcMapSizeNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder)
+		size, err := ___calcMapSizeNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeMapNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, encoder, 0)
+		b, offset, err := ___encodeMapNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -201,12 +202,12 @@ func ___encodeAsMap(i interface{}) ([]byte, error) {
 		return b, err
 	case *NoTimeNoStringNoFloatA:
 		encoder := enc.NewEncoder()
-		size, err := ___calcMapSizeNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder)
+		size, err := ___calcMapSizeNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder)
 		if err != nil {
 			return nil, err
 		}
 		encoder.MakeBytes(size)
-		b, offset, err := ___encodeMapNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, encoder, 0)
+		b, offset, err := ___encodeMapNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, encoder, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -215,7 +216,7 @@ func ___encodeAsMap(i interface{}) ([]byte, error) {
 		}
 		return b, err
 	}
-	return nil, fmt.Errorf("use strict option : undefined type")
+	return nil, nil
 }
 
 // decode
@@ -232,48 +233,48 @@ func ___decodeAsArray(data []byte, i interface{}) (bool, error) {
 	switch v := i.(type) {
 	case *A:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeArrayA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, decoder, 0)
+		offset, err := ___decodeArrayA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case **A:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeArrayA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, decoder, 0)
+		offset, err := ___decodeArrayA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case *NoTimeA:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeArrayNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, decoder, 0)
+		offset, err := ___decodeArrayNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case **NoTimeA:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeArrayNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, decoder, 0)
+		offset, err := ___decodeArrayNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case *NoTimeNoStringNoFloatA:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeArrayNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, decoder, 0)
+		offset, err := ___decodeArrayNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case **NoTimeNoStringNoFloatA:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeArrayNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, decoder, 0)
+		offset, err := ___decodeArrayNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	}
-	return false, fmt.Errorf("use strict option : undefined type")
+	return false, nil
 }
 
 // decodeAsMap
@@ -281,52 +282,52 @@ func ___decodeAsMap(data []byte, i interface{}) (bool, error) {
 	switch v := i.(type) {
 	case *A:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeMapA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, decoder, 0)
+		offset, err := ___decodeMapA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case **A:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeMapA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, decoder, 0)
+		offset, err := ___decodeMapA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case *NoTimeA:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeMapNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, decoder, 0)
+		offset, err := ___decodeMapNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case **NoTimeA:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeMapNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, decoder, 0)
+		offset, err := ___decodeMapNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case *NoTimeNoStringNoFloatA:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeMapNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v, decoder, 0)
+		offset, err := ___decodeMapNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	case **NoTimeNoStringNoFloatA:
 		decoder := dec.NewDecoder(data)
-		offset, err := ___decodeMapNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(*v, decoder, 0)
+		offset, err := ___decodeMapNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(*v, decoder, 0)
 		if err == nil && offset != decoder.Len() {
 			return true, fmt.Errorf("read length is different [%d] [%d] ", offset, decoder.Len())
 		}
 		return true, err
 	}
-	return false, fmt.Errorf("use strict option : undefined type")
+	return false, nil
 }
 
-// calculate size from github.com/alecthomas/go_serialization_benchmarks.A
-func ___calcArraySizeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v A, encoder *enc.Encoder) (int, error) {
+// calculate size from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.A
+func ___calcArraySizeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v A, encoder *enc.Encoder) (int, error) {
 	size := 0
 	size += encoder.CalcStructHeaderFix(6)
 	size += encoder.CalcString(v.Name)
@@ -338,8 +339,8 @@ func ___calcArraySizeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b
 	return size, nil
 }
 
-// calculate size from github.com/alecthomas/go_serialization_benchmarks.A
-func ___calcMapSizeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v A, encoder *enc.Encoder) (int, error) {
+// calculate size from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.A
+func ___calcMapSizeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v A, encoder *enc.Encoder) (int, error) {
 	size := 0
 	size += encoder.CalcStructHeaderFix(6)
 	size += encoder.CalcStringFix(4)
@@ -357,8 +358,8 @@ func ___calcMapSizeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b99
 	return size, nil
 }
 
-// encode from github.com/alecthomas/go_serialization_benchmarks.A
-func ___encodeArrayA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v A, encoder *enc.Encoder, offset int) ([]byte, int, error) {
+// encode from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.A
+func ___encodeArrayA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v A, encoder *enc.Encoder, offset int) ([]byte, int, error) {
 	var err error
 	offset = encoder.WriteStructHeaderFixAsArray(6, offset)
 	offset = encoder.WriteString(v.Name, offset)
@@ -370,8 +371,8 @@ func ___encodeArrayA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b99
 	return encoder.EncodedBytes(), offset, err
 }
 
-// encode from github.com/alecthomas/go_serialization_benchmarks.A
-func ___encodeMapA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v A, encoder *enc.Encoder, offset int) ([]byte, int, error) {
+// encode from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.A
+func ___encodeMapA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v A, encoder *enc.Encoder, offset int) ([]byte, int, error) {
 	var err error
 	offset = encoder.WriteStructHeaderFixAsMap(6, offset)
 	offset = encoder.WriteStringFix("Name", 4, offset)
@@ -389,8 +390,8 @@ func ___encodeMapA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d
 	return encoder.EncodedBytes(), offset, err
 }
 
-// decode to github.com/alecthomas/go_serialization_benchmarks.A
-func ___decodeArrayA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v *A, decoder *dec.Decoder, offset int) (int, error) {
+// decode to github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.A
+func ___decodeArrayA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v *A, decoder *dec.Decoder, offset int) (int, error) {
 	offset, err := decoder.CheckStructHeader(6, offset)
 	if err != nil {
 		return 0, err
@@ -446,8 +447,8 @@ func ___decodeArrayA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b99
 	return offset, err
 }
 
-// decode to github.com/alecthomas/go_serialization_benchmarks.A
-func ___decodeMapA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v *A, decoder *dec.Decoder, offset int) (int, error) {
+// decode to github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.A
+func ___decodeMapA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v *A, decoder *dec.Decoder, offset int) (int, error) {
 	keys := [][]byte{
 		{uint8(0x4e), uint8(0x61), uint8(0x6d), uint8(0x65)},                                                     // Name
 		{uint8(0x42), uint8(0x69), uint8(0x72), uint8(0x74), uint8(0x68), uint8(0x44), uint8(0x61), uint8(0x79)}, // BirthDay
@@ -551,8 +552,8 @@ func ___decodeMapA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d
 	return offset, err
 }
 
-// calculate size from github.com/alecthomas/go_serialization_benchmarks.NoTimeA
-func ___calcArraySizeNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v NoTimeA, encoder *enc.Encoder) (int, error) {
+// calculate size from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeA
+func ___calcArraySizeNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v NoTimeA, encoder *enc.Encoder) (int, error) {
 	size := 0
 	size += encoder.CalcStructHeaderFix(6)
 	size += encoder.CalcString(v.Name)
@@ -564,8 +565,8 @@ func ___calcArraySizeNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4
 	return size, nil
 }
 
-// calculate size from github.com/alecthomas/go_serialization_benchmarks.NoTimeA
-func ___calcMapSizeNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v NoTimeA, encoder *enc.Encoder) (int, error) {
+// calculate size from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeA
+func ___calcMapSizeNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v NoTimeA, encoder *enc.Encoder) (int, error) {
 	size := 0
 	size += encoder.CalcStructHeaderFix(6)
 	size += encoder.CalcStringFix(4)
@@ -583,8 +584,8 @@ func ___calcMapSizeNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b2
 	return size, nil
 }
 
-// encode from github.com/alecthomas/go_serialization_benchmarks.NoTimeA
-func ___encodeArrayNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v NoTimeA, encoder *enc.Encoder, offset int) ([]byte, int, error) {
+// encode from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeA
+func ___encodeArrayNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v NoTimeA, encoder *enc.Encoder, offset int) ([]byte, int, error) {
 	var err error
 	offset = encoder.WriteStructHeaderFixAsArray(6, offset)
 	offset = encoder.WriteString(v.Name, offset)
@@ -596,8 +597,8 @@ func ___encodeArrayNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b2
 	return encoder.EncodedBytes(), offset, err
 }
 
-// encode from github.com/alecthomas/go_serialization_benchmarks.NoTimeA
-func ___encodeMapNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v NoTimeA, encoder *enc.Encoder, offset int) ([]byte, int, error) {
+// encode from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeA
+func ___encodeMapNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v NoTimeA, encoder *enc.Encoder, offset int) ([]byte, int, error) {
 	var err error
 	offset = encoder.WriteStructHeaderFixAsMap(6, offset)
 	offset = encoder.WriteStringFix("Name", 4, offset)
@@ -615,8 +616,8 @@ func ___encodeMapNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d
 	return encoder.EncodedBytes(), offset, err
 }
 
-// decode to github.com/alecthomas/go_serialization_benchmarks.NoTimeA
-func ___decodeArrayNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v *NoTimeA, decoder *dec.Decoder, offset int) (int, error) {
+// decode to github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeA
+func ___decodeArrayNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v *NoTimeA, decoder *dec.Decoder, offset int) (int, error) {
 	offset, err := decoder.CheckStructHeader(6, offset)
 	if err != nil {
 		return 0, err
@@ -672,8 +673,8 @@ func ___decodeArrayNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b2
 	return offset, err
 }
 
-// decode to github.com/alecthomas/go_serialization_benchmarks.NoTimeA
-func ___decodeMapNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v *NoTimeA, decoder *dec.Decoder, offset int) (int, error) {
+// decode to github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeA
+func ___decodeMapNoTimeA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v *NoTimeA, decoder *dec.Decoder, offset int) (int, error) {
 	keys := [][]byte{
 		{uint8(0x4e), uint8(0x61), uint8(0x6d), uint8(0x65)},                                                     // Name
 		{uint8(0x42), uint8(0x69), uint8(0x72), uint8(0x74), uint8(0x68), uint8(0x44), uint8(0x61), uint8(0x79)}, // BirthDay
@@ -777,8 +778,8 @@ func ___decodeMapNoTimeA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d
 	return offset, err
 }
 
-// calculate size from github.com/alecthomas/go_serialization_benchmarks.NoTimeNoStringNoFloatA
-func ___calcArraySizeNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v NoTimeNoStringNoFloatA, encoder *enc.Encoder) (int, error) {
+// calculate size from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeNoStringNoFloatA
+func ___calcArraySizeNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v NoTimeNoStringNoFloatA, encoder *enc.Encoder) (int, error) {
 	size := 0
 	size += encoder.CalcStructHeaderFix(6)
 	if v.Name != nil {
@@ -812,8 +813,8 @@ func ___calcArraySizeNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202
 	return size, nil
 }
 
-// calculate size from github.com/alecthomas/go_serialization_benchmarks.NoTimeNoStringNoFloatA
-func ___calcMapSizeNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v NoTimeNoStringNoFloatA, encoder *enc.Encoder) (int, error) {
+// calculate size from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeNoStringNoFloatA
+func ___calcMapSizeNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v NoTimeNoStringNoFloatA, encoder *enc.Encoder) (int, error) {
 	size := 0
 	size += encoder.CalcStructHeaderFix(6)
 	size += encoder.CalcStringFix(4)
@@ -853,8 +854,8 @@ func ___calcMapSizeNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4
 	return size, nil
 }
 
-// encode from github.com/alecthomas/go_serialization_benchmarks.NoTimeNoStringNoFloatA
-func ___encodeArrayNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v NoTimeNoStringNoFloatA, encoder *enc.Encoder, offset int) ([]byte, int, error) {
+// encode from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeNoStringNoFloatA
+func ___encodeArrayNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v NoTimeNoStringNoFloatA, encoder *enc.Encoder, offset int) ([]byte, int, error) {
 	var err error
 	offset = encoder.WriteStructHeaderFixAsArray(6, offset)
 	if v.Name != nil {
@@ -880,8 +881,8 @@ func ___encodeArrayNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4
 	return encoder.EncodedBytes(), offset, err
 }
 
-// encode from github.com/alecthomas/go_serialization_benchmarks.NoTimeNoStringNoFloatA
-func ___encodeMapNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v NoTimeNoStringNoFloatA, encoder *enc.Encoder, offset int) ([]byte, int, error) {
+// encode from github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeNoStringNoFloatA
+func ___encodeMapNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v NoTimeNoStringNoFloatA, encoder *enc.Encoder, offset int) ([]byte, int, error) {
 	var err error
 	offset = encoder.WriteStructHeaderFixAsMap(6, offset)
 	offset = encoder.WriteStringFix("Name", 4, offset)
@@ -913,8 +914,8 @@ func ___encodeMapNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf
 	return encoder.EncodedBytes(), offset, err
 }
 
-// decode to github.com/alecthomas/go_serialization_benchmarks.NoTimeNoStringNoFloatA
-func ___decodeArrayNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v *NoTimeNoStringNoFloatA, decoder *dec.Decoder, offset int) (int, error) {
+// decode to github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeNoStringNoFloatA
+func ___decodeArrayNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v *NoTimeNoStringNoFloatA, decoder *dec.Decoder, offset int) (int, error) {
 	offset, err := decoder.CheckStructHeader(6, offset)
 	if err != nil {
 		return 0, err
@@ -994,8 +995,8 @@ func ___decodeArrayNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4
 	return offset, err
 }
 
-// decode to github.com/alecthomas/go_serialization_benchmarks.NoTimeNoStringNoFloatA
-func ___decodeMapNoTimeNoStringNoFloatA_dd450b3568aeca1e592f09df9c4397c3c202e4bf15bc89215d4b28d1b990d189(v *NoTimeNoStringNoFloatA, decoder *dec.Decoder, offset int) (int, error) {
+// decode to github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton.NoTimeNoStringNoFloatA
+func ___decodeMapNoTimeNoStringNoFloatA_5d9f3c361d0feb6dea6d9b5e53ae6206fabebe6a77ba1fc25670bacddce9670a(v *NoTimeNoStringNoFloatA, decoder *dec.Decoder, offset int) (int, error) {
 	keys := [][]byte{
 		{uint8(0x4e), uint8(0x61), uint8(0x6d), uint8(0x65)},                                                     // Name
 		{uint8(0x42), uint8(0x69), uint8(0x72), uint8(0x74), uint8(0x68), uint8(0x44), uint8(0x61), uint8(0x79)}, // BirthDay

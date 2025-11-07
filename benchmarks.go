@@ -357,28 +357,28 @@ var benchmarkCases = []BenchmarkCase{
 		New:  shamaton.NewShamatonMapMsgpackSerializer,
 
 		TimeSupport: TSUnknown,
-		APIKind:     AKReflect,
+		APIKind:     AKCodegen,
 	}, {
 		Name: "shamaton/msgpack/array",
 		URL:  "github.com/shamaton/msgpack",
 		New:  shamaton.NewShamatonArrayMsgPackSerializer,
 
 		TimeSupport: TSUnknown,
-		APIKind:     AKReflect,
+		APIKind:     AKCodegen,
 	}, {
 		Name: "shamaton/msgpackgen/map",
 		URL:  "github.com/shamaton/msgpack",
 		New:  shamaton.NewShamatonMapMsgPackgenSerializer,
 
 		TimeSupport: TSUnknown,
-		APIKind:     AKReflect,
+		APIKind:     AKCodegen,
 	}, {
 		Name: "shamaton/msgpackgen/array",
 		URL:  "github.com/shamaton/msgpack",
 		New:  shamaton.NewShamatonArrayMsgpackgenSerializer,
 
 		TimeSupport: TSUnknown,
-		APIKind:     AKReflect,
+		APIKind:     AKCodegen,
 	}, {
 		Name: "ssz",
 		URL:  "github.com/prysmaticlabs/go-ssz",
