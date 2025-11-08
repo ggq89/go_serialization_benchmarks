@@ -358,14 +358,14 @@ var benchmarkCases = []BenchmarkCase{
 		New:  shamaton.NewShamatonMapMsgpackSerializer,
 
 		TimeSupport: TSUnknown,
-		APIKind:     AKCodegen,
+		APIKind:     AKReflect,
 	}, {
 		Name: "shamaton/msgpack/array",
 		URL:  "github.com/shamaton/msgpack",
 		New:  shamaton.NewShamatonArrayMsgPackSerializer,
 
 		TimeSupport: TSUnknown,
-		APIKind:     AKCodegen,
+		APIKind:     AKReflect,
 	}, {
 		Name: "shamaton/msgpackgen/map",
 		URL:  "github.com/shamaton/msgpack",
