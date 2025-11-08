@@ -7,9 +7,9 @@ import (
 	capnprotov3 "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/capnproto_v3"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/flatbuffers25"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/jsoniter"
-	msgpacktinylib "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/msgpack_tinylib"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf3"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/pulsar"
+	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton"
 )
 
 // TimeSupport is the type of support for time.Time values.
@@ -102,13 +102,13 @@ var benchmarkCases = []BenchmarkCase{
 		// 	TimeSupport: TSUnixNs,
 		// 	APIKind:     AKReflect,
 		// }, {
-		Name: "msgp",
-		URL:  "github.com/tinylib/msgp",
-		New:  msgpacktinylib.NewMsgpSerializer,
+		// 	Name: "msgp",
+		// 	URL:  "github.com/tinylib/msgp",
+		// 	New:  msgpacktinylib.NewMsgpSerializer,
 
-		TimeSupport: TSFullRange,
-		APIKind:     AKCodegen,
-	}, {
+		// 	TimeSupport: TSFullRange,
+		// 	APIKind:     AKCodegen,
+		// }, {
 		// 	Name: "msgpack",
 		// 	URL:  "github.com/vmihailenco/msgpack",
 		// 	New:  msgpackvmihailenco.NewVmihailencoMsgpackSerialier,
@@ -328,14 +328,14 @@ var benchmarkCases = []BenchmarkCase{
 		// 	New:  shamaton.NewShamatonMapMsgpackSerializer,
 
 		// 	TimeSupport: TSUnknown,
-		// 	APIKind:     AKCodegen,
+		// 	APIKind:     AKReflect,
 		// }, {
 		// 	Name: "shamaton/msgpack/array",
 		// 	URL:  "github.com/shamaton/msgpack",
 		// 	New:  shamaton.NewShamatonArrayMsgPackSerializer,
 
 		// 	TimeSupport: TSUnknown,
-		// 	APIKind:     AKCodegen,
+		// 	APIKind:     AKReflect,
 		// }, {
 		// 	Name: "shamaton/msgpackgen/map",
 		// 	URL:  "github.com/shamaton/msgpack",
@@ -344,13 +344,13 @@ var benchmarkCases = []BenchmarkCase{
 		// 	TimeSupport: TSUnknown,
 		// 	APIKind:     AKCodegen,
 		// }, {
-		// 	Name: "shamaton/msgpackgen/array",
-		// 	URL:  "github.com/shamaton/msgpack",
-		// 	New:  shamaton.NewShamatonArrayMsgpackgenSerializer,
+		Name: "shamaton/msgpackgen/array",
+		URL:  "github.com/shamaton/msgpack",
+		New:  shamaton.NewShamatonArrayMsgpackgenSerializer,
 
-		// 	TimeSupport: TSUnknown,
-		// 	APIKind:     AKCodegen,
-		// }, {
+		TimeSupport: TSUnknown,
+		APIKind:     AKCodegen,
+	}, {
 		// 	Name: "ssz",
 		// 	URL:  "github.com/prysmaticlabs/go-ssz",
 		// 	New:  ssz.NewSSZSerializer,
