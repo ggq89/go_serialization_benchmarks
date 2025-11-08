@@ -9,6 +9,7 @@ import (
 	"regexp"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/alecthomas/go_serialization_benchmarks/goserbench"
 )
@@ -20,6 +21,7 @@ type reportLine struct {
 	TotalIterCount        int    `json:"total_iter_count"`
 	UnsafeStringUnmarshal bool   `json:"unsafe_string_unmarshal"`
 	BufferReuseMarshal    bool   `json:"buffer_reuse_marshal"`
+	Deterministic         bool   `json:"deterministic"`
 	MarshalNsOp           int64  `json:"marshal_ns_op"`
 	UnmarshalNsOp         int64  `json:"unmarshal_ns_op"`
 	TotalNsOp             int64  `json:"total_ns_op"`
@@ -36,6 +38,40 @@ type reportLine struct {
 	Notes                 string `json:"notes"`
 }
 
+// 创建一个固定的测试数据
+var testData = goserbench.SmallStruct{
+	Name:     "Test Name",
+	BirthDay: time.Now(),
+	Phone:    "123-456-7890",
+	Siblings: 2,
+	Spouse:   true,
+	Money:    123.45,
+}
+
+// CheckSerializerDeterminism 检查序列化器的确定性
+// 返回是否确定以及任何错误
+func CheckSerializerDeterminism(serializer goserbench.Serializer) (bool, error) {
+	// 第一次序列化
+	firstResult, err := serializer.Marshal(&testData)
+	if err != nil {
+		return false, err
+	}
+
+	// 后续9次序列化并比较
+	for i := 1; i < 10; i++ {
+		data, err := serializer.Marshal(&testData)
+		if err != nil {
+			return false, err
+		}
+
+		if string(firstResult) != string(data) {
+			return false, nil
+		}
+	}
+
+	return true, nil
+}
+
 func BenchAndReportSerializers(generateReport bool, validate bool, namesRe *regexp.Regexp) error {
 	data := make([]reportLine, len(benchmarkCases))
 	for i, bench := range benchmarkCases {
@@ -48,6 +84,16 @@ func BenchAndReportSerializers(generateReport bool, validate bool, namesRe *rege
 		})
 		fmt.Printf("%10s -   Marshal - %s %s\n", bench.Name, marshalRes.String(),
 			marshalRes.MemString())
+
+		deterministic, err := CheckSerializerDeterminism(bench.New())
+		if err != nil {
+			fmt.Printf("\nDeterminism check of %q failed: %v\n", bench.Name, err)
+			fmt.Printf("Test with go test -validate -run Bench -bench BenchmarkSerializers/determinism/%s\n\n", bench.Name)
+			return fmt.Errorf("benchmark %s failed", bench.Name)
+		}
+		if !deterministic {
+			fmt.Printf("\nSerializer %q is not deterministic!\n", bench.Name)
+		}
 
 		unmarshalOk := false
 		unmarshalRes := testing.Benchmark(func(b *testing.B) {
@@ -67,6 +113,7 @@ func BenchAndReportSerializers(generateReport bool, validate bool, namesRe *rege
 			Name:                  bench.Name,
 			MarshalIterCount:      marshalRes.N,
 			UnmarshalIterCount:    unmarshalRes.N,
+			Deterministic:         deterministic,
 			TotalIterCount:        marshalRes.N + unmarshalRes.N,
 			MarshalNsOp:           marshalRes.NsPerOp(),
 			UnmarshalNsOp:         unmarshalRes.NsPerOp(),

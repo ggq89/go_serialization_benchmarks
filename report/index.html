@@ -211,6 +211,7 @@
 				<label><input type="checkbox" data-column="13" checked> Serialization Size</label>
 				<label><input type="checkbox" data-column="14" checked> Unsafe Str Unmarshal</label>
 				<label><input type="checkbox" data-column="15" checked> Buffer Reuse Marshal</label>
+				<label><input type="checkbox" data-column="15" checked> Deterministic Marshal</label>
 				<label><input type="checkbox" data-column="16" checked> Time Support</label>
 				<label><input type="checkbox" data-column="17" checked> API Kind</label>
 				<label><input type="checkbox" data-column="18" checked> URL</label>
@@ -265,6 +266,7 @@
 					if
 					the underlying backing byte array is modified.</li>
 				<li><b>Buffer Reuse Marshal</b>: Whether marshalling reuses its internal buffer for every operation.
+				<li><b>Deterministic Marshal</b>: Deterministic serialization guarantees the same bytes output for a particular data.
 				</li>
 				<li><b>Time Support</b>: How the serializer supports time.Time values. Options:
 					<ul>
@@ -308,6 +310,7 @@
 				<th>Serialization Size</th>
 				<th>Unsafe Str Unmarshal</th>
 				<th>Buffer Reuse Marshal</th>
+				<th>Deterministic Marshal</th>
 				<th>Time Support</th>
 				<th>API Kind</th>
 				<th>URL</th>
@@ -416,6 +419,12 @@
 					},
 					{
 						data: 'buffer_reuse_marshal',
+						render: function (data, type, row) {
+							return data ? 'yes' : 'no';
+						}
+					},
+					{
+						data: 'deterministic',
 						render: function (data, type, row) {
 							return data ? 'yes' : 'no';
 						}
