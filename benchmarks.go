@@ -2,44 +2,14 @@ package main
 
 import (
 	"github.com/alecthomas/go_serialization_benchmarks/goserbench"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/avro"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/baseline"
-	bebop200sc "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/bebop_200sc"
 	bebopwellquite "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/bebop_wellquite"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/benc"
-	binaryalecthomas "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/binary_alecthomas"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/bson"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/capnproto"
 	capnprotov3 "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/capnproto_v3"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/colfer"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/easyjson"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/fastape"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/fastjson"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/flatbuffers"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/flatbuffers25"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gencode"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gogo"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gotiny"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/hprose"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/hprose2"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/idr"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/ikea"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/jsoniter"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/mongobson"
 	msgpacktinylib "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/msgpack_tinylib"
-	msgpackvmihailenco "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/msgpack_vmihailenco"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/mus"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf3"
-	protobufdedis "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf_dedis"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/pulsar"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/sereal"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/ssz"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/stdlib"
-	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/ugorji"
-	xdrcalmh "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/xdr_calmh"
-	xdrdavecgh "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/xdr_davecgh"
 )
 
 // TimeSupport is the type of support for time.Time values.
@@ -125,13 +95,13 @@ type BenchmarkCase struct {
 
 var benchmarkCases = []BenchmarkCase{
 	{
-		Name: "gotiny",
-		URL:  "github.com/niubaoshu/gotiny",
-		New:  gotiny.NewGotinySerializer,
+		// 	Name: "gotiny",
+		// 	URL:  "github.com/niubaoshu/gotiny",
+		// 	New:  gotiny.NewGotinySerializer,
 
-		TimeSupport: TSUnixNs,
-		APIKind:     AKReflect,
-	}, {
+		// 	TimeSupport: TSUnixNs,
+		// 	APIKind:     AKReflect,
+		// }, {
 		Name: "msgp",
 		URL:  "github.com/tinylib/msgp",
 		New:  msgpacktinylib.NewMsgpSerializer,
@@ -139,20 +109,20 @@ var benchmarkCases = []BenchmarkCase{
 		TimeSupport: TSFullRange,
 		APIKind:     AKCodegen,
 	}, {
-		Name: "msgpack",
-		URL:  "github.com/vmihailenco/msgpack",
-		New:  msgpackvmihailenco.NewVmihailencoMsgpackSerialier,
+		// 	Name: "msgpack",
+		// 	URL:  "github.com/vmihailenco/msgpack",
+		// 	New:  msgpackvmihailenco.NewVmihailencoMsgpackSerialier,
 
-		TimeSupport: TSFullRange,
-		APIKind:     AKReflect,
-	}, {
-		Name: "json",
-		URL:  "pkg.go/dev/encoding/json",
-		New:  stdlib.NewJSONSerializer,
+		// 	TimeSupport: TSFullRange,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "json",
+		// 	URL:  "pkg.go/dev/encoding/json",
+		// 	New:  stdlib.NewJSONSerializer,
 
-		TimeSupport: TSRFC3339Ns,
-		APIKind:     AKReflect,
-	}, {
+		// 	TimeSupport: TSRFC3339Ns,
+		// 	APIKind:     AKReflect,
+		// }, {
 		Name: "jsoniter",
 		URL:  "github.com/json-iterator/go",
 		New:  jsoniter.NewJSONIterSerializer,
@@ -160,113 +130,113 @@ var benchmarkCases = []BenchmarkCase{
 		TimeSupport: TSCustom,
 		APIKind:     AKReflect,
 	}, {
-		Name: "easyjson",
-		URL:  "github.com/mailru/easyjson",
-		New:  easyjson.NewEasyJSONSerializer,
+		// 	Name: "easyjson",
+		// 	URL:  "github.com/mailru/easyjson",
+		// 	New:  easyjson.NewEasyJSONSerializer,
 
-		TimeSupport: TSUnknown,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "bson",
-		URL:  "gopkg.in/mgo.v2/bson",
-		New:  bson.NewBsonSerializer,
+		// 	TimeSupport: TSUnknown,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "bson",
+		// 	URL:  "gopkg.in/mgo.v2/bson",
+		// 	New:  bson.NewBsonSerializer,
 
-		TimeSupport: TSUnixMs,
-		APIKind:     AKReflect,
-	}, {
-		Name: "mongobson",
-		URL:  "go.mongodb.org/mongo-driver/mongo",
-		New:  mongobson.NewMongoBSONSerializer,
+		// 	TimeSupport: TSUnixMs,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "mongobson",
+		// 	URL:  "go.mongodb.org/mongo-driver/mongo",
+		// 	New:  mongobson.NewMongoBSONSerializer,
 
-		TimeSupport: TSUnixMs,
-		APIKind:     AKReflect,
-	}, {
-		Name: "gob",
-		URL:  "pkg.go.dev/encoding/gob",
-		New:  stdlib.NewGobSerializer,
+		// 	TimeSupport: TSUnixMs,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "gob",
+		// 	URL:  "pkg.go.dev/encoding/gob",
+		// 	New:  stdlib.NewGobSerializer,
 
-		TimeSupport: TSFullTzOffset,
-		APIKind:     AKReflect,
-	}, {
-		Name: "davecgh/xdr",
-		URL:  "github.com/davecgh/go-xdr/xdr",
-		New:  xdrdavecgh.NewXDRDavecghSerializer,
+		// 	TimeSupport: TSFullTzOffset,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "davecgh/xdr",
+		// 	URL:  "github.com/davecgh/go-xdr/xdr",
+		// 	New:  xdrdavecgh.NewXDRDavecghSerializer,
 
-		TimeSupport: TSRFC3339Ns,
-		APIKind:     AKReflect,
-	}, {
-		Name: "ugorji/msgpack",
-		URL:  "github.com/ugorji/go/codec",
-		New:  ugorji.NewUgorjiCodecMsgPack,
+		// 	TimeSupport: TSRFC3339Ns,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "ugorji/msgpack",
+		// 	URL:  "github.com/ugorji/go/codec",
+		// 	New:  ugorji.NewUgorjiCodecMsgPack,
 
-		TimeSupport: TSUnknown,
-		APIKind:     AKReflect,
-	}, {
-		Name: "ugorji/binc",
-		URL:  "github.com/ugorji/go/codec",
-		New:  ugorji.NewUgorjiCodecBinc,
+		// 	TimeSupport: TSUnknown,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "ugorji/binc",
+		// 	URL:  "github.com/ugorji/go/codec",
+		// 	New:  ugorji.NewUgorjiCodecBinc,
 
-		TimeSupport: TSFullTzOffset,
-		APIKind:     AKReflect,
-	}, {
-		Name: "sereal",
-		URL:  "github.com/Sereal/Sereal/Go/sereal",
-		New:  sereal.NewSerealSerializer,
+		// 	TimeSupport: TSFullTzOffset,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "sereal",
+		// 	URL:  "github.com/Sereal/Sereal/Go/sereal",
+		// 	New:  sereal.NewSerealSerializer,
 
-		TimeSupport: TSUnknown,
-		APIKind:     AKReflect,
-	}, {
-		Name: "alecthomas/binary",
-		URL:  "github.com/alecthomas/binary",
-		New:  binaryalecthomas.NewBinarySerializer,
+		// 	TimeSupport: TSUnknown,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "alecthomas/binary",
+		// 	URL:  "github.com/alecthomas/binary",
+		// 	New:  binaryalecthomas.NewBinarySerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKReflect,
-	}, {
-		Name: "flatbuffers",
-		URL:  "github.com/google/flatbuffers/go",
-		New:  flatbuffers.NewFlatBuffersSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKReflect,
+		// }, {
+		// 	Name: "flatbuffers",
+		// 	URL:  "github.com/google/flatbuffers/go",
+		// 	New:  flatbuffers.NewFlatBuffersSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "flatbuffers/unsafe_reuse",
-		URL:  "github.com/google/flatbuffers/go",
-		New:  flatbuffers.NewFlatBuffersUnsafeReuseSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "flatbuffers/unsafe_reuse",
+		// 	URL:  "github.com/google/flatbuffers/go",
+		// 	New:  flatbuffers.NewFlatBuffersUnsafeReuseSerializer,
 
-		TimeSupport:           TSNoSupport,
-		APIKind:               AKCodegen,
-		UnsafeStringUnmarshal: true,
-		BufferReuseMarshal:    true,
-	}, {
-		Name: "capnproto",
-		URL:  "github.com/glycerine/go-capnproto",
-		New:  capnproto.NewCapNProtoSerializer,
+		// 	TimeSupport:           TSNoSupport,
+		// 	APIKind:               AKCodegen,
+		// 	UnsafeStringUnmarshal: true,
+		// 	BufferReuseMarshal:    true,
+		// }, {
+		// 	Name: "capnproto",
+		// 	URL:  "github.com/glycerine/go-capnproto",
+		// 	New:  capnproto.NewCapNProtoSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "hprose",
-		URL:  "github.com/hprose/hprose-go/io",
-		New:  hprose.NewHproseSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "hprose",
+		// 	URL:  "github.com/hprose/hprose-go/io",
+		// 	New:  hprose.NewHproseSerializer,
 
-		TimeSupport: TSCustom,
-		APIKind:     AKManual,
-	}, {
-		Name: "hprose2",
-		URL:  "github.com/hprose/hprose-golang/io",
-		New:  hprose2.NewHProse2Serializer,
+		// 	TimeSupport: TSCustom,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "hprose2",
+		// 	URL:  "github.com/hprose/hprose-golang/io",
+		// 	New:  hprose2.NewHProse2Serializer,
 
-		TimeSupport: TSCustom,
-		APIKind:     AKManual,
-	}, {
-		Name: "dedis/protobuf",
-		URL:  "go.dedis.ch/protobuf",
-		New:  protobufdedis.NewProtobufSerializer,
+		// 	TimeSupport: TSCustom,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "dedis/protobuf",
+		// 	URL:  "go.dedis.ch/protobuf",
+		// 	New:  protobufdedis.NewProtobufSerializer,
 
-		TimeSupport: TSUnixNs,
-		APIKind:     AKReflect,
-	}, {
+		// 	TimeSupport: TSUnixNs,
+		// 	APIKind:     AKReflect,
+		// }, {
 		Name: "pulsar",
 		URL:  "github.com/cosmos/cosmos-proto",
 		New:  pulsar.NewPulsarSerializer,
@@ -274,151 +244,151 @@ var benchmarkCases = []BenchmarkCase{
 		TimeSupport: TSNoSupport,
 		APIKind:     AKCodegen,
 	}, {
-		Name: "protobuf-go",
-		URL:  "github.com/protocolbuffers/protobuf-go",
-		New:  protobuf.NewProtobufSerializer,
+		// 	Name: "protobuf-go",
+		// 	URL:  "github.com/protocolbuffers/protobuf-go",
+		// 	New:  protobuf.NewProtobufSerializer,
 
-		TimeSupport: TSRFC3339Ns,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "gogo/protobuf",
-		URL:  "github.com/gogo/protobuf/proto",
-		New:  gogo.NewGogoProtoSerializer,
+		// 	TimeSupport: TSRFC3339Ns,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "gogo/protobuf",
+		// 	URL:  "github.com/gogo/protobuf/proto",
+		// 	New:  gogo.NewGogoProtoSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "gogo/jsonpb",
-		URL:  "github.com/gogo/protobuf/proto",
-		New:  gogo.NewGogoJsonSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "gogo/jsonpb",
+		// 	URL:  "github.com/gogo/protobuf/proto",
+		// 	New:  gogo.NewGogoJsonSerializer,
 
-		TimeSupport: TSRFC3339Ns,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "colfer",
-		URL:  "github.com/pascaldekloe/colfer",
-		New:  colfer.NewColferSerializer,
+		// 	TimeSupport: TSRFC3339Ns,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "colfer",
+		// 	URL:  "github.com/pascaldekloe/colfer",
+		// 	New:  colfer.NewColferSerializer,
 
-		TimeSupport: TSCustom,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "gencode",
-		URL:  "github.com/andyleap/gencode",
-		New:  gencode.NewGencodeSerializer,
+		// 	TimeSupport: TSCustom,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "gencode",
+		// 	URL:  "github.com/andyleap/gencode",
+		// 	New:  gencode.NewGencodeSerializer,
 
-		TimeSupport: TSFullTzOffset,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "gencode/unsafe_reuse",
-		URL:  "github.com/andyleap/gencode",
-		New:  gencode.NewGencodeUnsafeSerializer,
+		// 	TimeSupport: TSFullTzOffset,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "gencode/unsafe_reuse",
+		// 	URL:  "github.com/andyleap/gencode",
+		// 	New:  gencode.NewGencodeUnsafeSerializer,
 
-		BufferReuseMarshal:    true,
-		UnsafeStringUnmarshal: true,
-		TimeSupport:           TSFullTzOffset,
-		APIKind:               AKCodegen,
-	}, {
-		Name: "calmh/xdr",
-		URL:  "github.com/calmh/xdr",
-		New:  xdrcalmh.NewXDRCalmhSerializer,
+		// 	BufferReuseMarshal:    true,
+		// 	UnsafeStringUnmarshal: true,
+		// 	TimeSupport:           TSFullTzOffset,
+		// 	APIKind:               AKCodegen,
+		// }, {
+		// 	Name: "calmh/xdr",
+		// 	URL:  "github.com/calmh/xdr",
+		// 	New:  xdrcalmh.NewXDRCalmhSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "goavro",
-		URL:  "gopkg.in/linkedin/goavro.v1",
-		New:  avro.NewAvroA,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "goavro",
+		// 	URL:  "gopkg.in/linkedin/goavro.v1",
+		// 	New:  avro.NewAvroA,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-	}, {
-		Name: "avro2/text",
-		URL:  "github.com/linkedin/goavro",
-		New:  avro.NewAvro2Txt,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "avro2/text",
+		// 	URL:  "github.com/linkedin/goavro",
+		// 	New:  avro.NewAvro2Txt,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-	}, {
-		Name: "avro2/binary",
-		URL:  "github.com/linkedin/goavro",
-		New:  avro.NewAvro2Bin,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "avro2/binary",
+		// 	URL:  "github.com/linkedin/goavro",
+		// 	New:  avro.NewAvro2Bin,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-	}, {
-		Name: "ikea",
-		URL:  "github.com/ikkerens/ikeapack",
-		New:  ikea.NewIkeaSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "ikea",
+		// 	URL:  "github.com/ikkerens/ikeapack",
+		// 	New:  ikea.NewIkeaSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-	}, {
-		Name: "shamaton/msgpack/map",
-		URL:  "github.com/shamaton/msgpack",
-		New:  shamaton.NewShamatonMapMsgpackSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "shamaton/msgpack/map",
+		// 	URL:  "github.com/shamaton/msgpack",
+		// 	New:  shamaton.NewShamatonMapMsgpackSerializer,
 
-		TimeSupport: TSUnknown,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "shamaton/msgpack/array",
-		URL:  "github.com/shamaton/msgpack",
-		New:  shamaton.NewShamatonArrayMsgPackSerializer,
+		// 	TimeSupport: TSUnknown,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "shamaton/msgpack/array",
+		// 	URL:  "github.com/shamaton/msgpack",
+		// 	New:  shamaton.NewShamatonArrayMsgPackSerializer,
 
-		TimeSupport: TSUnknown,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "shamaton/msgpackgen/map",
-		URL:  "github.com/shamaton/msgpack",
-		New:  shamaton.NewShamatonMapMsgPackgenSerializer,
+		// 	TimeSupport: TSUnknown,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "shamaton/msgpackgen/map",
+		// 	URL:  "github.com/shamaton/msgpack",
+		// 	New:  shamaton.NewShamatonMapMsgPackgenSerializer,
 
-		TimeSupport: TSUnknown,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "shamaton/msgpackgen/array",
-		URL:  "github.com/shamaton/msgpack",
-		New:  shamaton.NewShamatonArrayMsgpackgenSerializer,
+		// 	TimeSupport: TSUnknown,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "shamaton/msgpackgen/array",
+		// 	URL:  "github.com/shamaton/msgpack",
+		// 	New:  shamaton.NewShamatonArrayMsgpackgenSerializer,
 
-		TimeSupport: TSUnknown,
-		APIKind:     AKCodegen,
-	}, {
-		Name: "ssz",
-		URL:  "github.com/prysmaticlabs/go-ssz",
-		New:  ssz.NewSSZSerializer,
+		// 	TimeSupport: TSUnknown,
+		// 	APIKind:     AKCodegen,
+		// }, {
+		// 	Name: "ssz",
+		// 	URL:  "github.com/prysmaticlabs/go-ssz",
+		// 	New:  ssz.NewSSZSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-	}, {
-		Name: "200sc/bebop",
-		URL:  "github.com/200sc/bebop",
-		New:  bebop200sc.NewBebop200ScSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "200sc/bebop",
+		// 	URL:  "github.com/200sc/bebop",
+		// 	New:  bebop200sc.NewBebop200ScSerializer,
 
-		TimeSupport: TSCustom,
-		APIKind:     AKCodegen,
-		Notes: []string{
-			"time.Time values are encoded with 100 nanosecond precision.",
-		},
-	}, {
-		Name: "200sc/bebop/reuse",
-		URL:  "github.com/200sc/bebop",
-		New:  bebop200sc.NewBebop200ScReuseSerializer,
+		// 	TimeSupport: TSCustom,
+		// 	APIKind:     AKCodegen,
+		// 	Notes: []string{
+		// 		"time.Time values are encoded with 100 nanosecond precision.",
+		// 	},
+		// }, {
+		// 	Name: "200sc/bebop/reuse",
+		// 	URL:  "github.com/200sc/bebop",
+		// 	New:  bebop200sc.NewBebop200ScReuseSerializer,
 
-		BufferReuseMarshal: true,
-		TimeSupport:        TSCustom,
-		APIKind:            AKCodegen,
-		Notes: []string{
-			"time.Time values are encoded with 100 nanosecond precision.",
-		},
-	}, {
-		Name: "wellquite/bebop",
-		URL:  "wellquite.org/bebop",
-		New:  bebopwellquite.NewBebopWellquiteSerializer,
+		// 	BufferReuseMarshal: true,
+		// 	TimeSupport:        TSCustom,
+		// 	APIKind:            AKCodegen,
+		// 	Notes: []string{
+		// 		"time.Time values are encoded with 100 nanosecond precision.",
+		// 	},
+		// }, {
+		// 	Name: "wellquite/bebop",
+		// 	URL:  "wellquite.org/bebop",
+		// 	New:  bebopwellquite.NewBebopWellquiteSerializer,
 
-		TimeSupport: TSCustom,
-		APIKind:     AKCodegen,
-		Notes: []string{
-			"time.Time values are encoded with 100 nanosecond precision.",
-		},
-	}, {
+		// 	TimeSupport: TSCustom,
+		// 	APIKind:     AKCodegen,
+		// 	Notes: []string{
+		// 		"time.Time values are encoded with 100 nanosecond precision.",
+		// 	},
+		// }, {
 		Name: "wellquite/bebop/reuse",
 		URL:  "wellquite.org/bebop",
 		New:  bebopwellquite.NewBebopWellquiteReuseSerializer,
@@ -430,79 +400,79 @@ var benchmarkCases = []BenchmarkCase{
 			"time.Time values are encoded with 100 nanosecond precision.",
 		},
 	}, {
-		Name: "fastjson",
-		URL:  "github.com/valyala/fastjson",
-		New:  fastjson.NewFastJSONSerializer,
+		// 	Name: "fastjson",
+		// 	URL:  "github.com/valyala/fastjson",
+		// 	New:  fastjson.NewFastJSONSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-	}, {
-		Name: "fastjson/reuse",
-		URL:  "github.com/valyala/fastjson",
-		New:  fastjson.NewFastJSONReuseSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "fastjson/reuse",
+		// 	URL:  "github.com/valyala/fastjson",
+		// 	New:  fastjson.NewFastJSONReuseSerializer,
 
-		BufferReuseMarshal: true,
-		TimeSupport:        TSNoSupport,
-		APIKind:            AKManual,
-	}, {
-		Name: "benc",
-		URL:  "github.com/deneonet/benc",
-		New:  benc.NewBENCSerializer,
+		// 	BufferReuseMarshal: true,
+		// 	TimeSupport:        TSNoSupport,
+		// 	APIKind:            AKManual,
+		// }, {
+		// 	Name: "benc",
+		// 	URL:  "github.com/deneonet/benc",
+		// 	New:  benc.NewBENCSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-	}, {
-		Name: "benc/usafe",
-		URL:  "github.com/deneonet/benc",
-		New:  benc.NewBENCUnsafeSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "benc/usafe",
+		// 	URL:  "github.com/deneonet/benc",
+		// 	New:  benc.NewBENCUnsafeSerializer,
 
-		UnsafeStringUnmarshal: true,
-		TimeSupport:           TSNoSupport,
-		APIKind:               AKManual,
-	}, {
-		Name: "mus",
-		URL:  "github.com/mus-format/mus-go",
-		New:  mus.NewMUSSerializer,
+		// 	UnsafeStringUnmarshal: true,
+		// 	TimeSupport:           TSNoSupport,
+		// 	APIKind:               AKManual,
+		// }, {
+		// 	Name: "mus",
+		// 	URL:  "github.com/mus-format/mus-go",
+		// 	New:  mus.NewMUSSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-	}, {
-		Name: "mus/unsafe_reuse",
-		URL:  "github.com/mus-format/mus-go",
-		New:  mus.NewMUSUnsafeReuseSerializer,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// }, {
+		// 	Name: "mus/unsafe_reuse",
+		// 	URL:  "github.com/mus-format/mus-go",
+		// 	New:  mus.NewMUSUnsafeReuseSerializer,
 
-		BufferReuseMarshal:    true,
-		UnsafeStringUnmarshal: true,
-		TimeSupport:           TSNoSupport,
-		APIKind:               AKManual,
-	}, {
-		Name: "idr",
-		URL:  "github.com/chmike/ditp",
-		New:  idr.NewIDRSerializer,
+		// 	BufferReuseMarshal:    true,
+		// 	UnsafeStringUnmarshal: true,
+		// 	TimeSupport:           TSNoSupport,
+		// 	APIKind:               AKManual,
+		// }, {
+		// 	Name: "idr",
+		// 	URL:  "github.com/chmike/ditp",
+		// 	New:  idr.NewIDRSerializer,
 
-		TimeSupport: TSFullTzOffset,
-		APIKind:     AKManual,
-		Notes:       []string{"low level IDR encoding demo with same nsec time encoding as benc"},
-	}, {
-		Name: "idr/reuse",
-		URL:  "github.com/chmike/ditp",
-		New:  idr.NewIDRSerializerReuse,
+		// 	TimeSupport: TSFullTzOffset,
+		// 	APIKind:     AKManual,
+		// 	Notes:       []string{"low level IDR encoding demo with same nsec time encoding as benc"},
+		// }, {
+		// 	Name: "idr/reuse",
+		// 	URL:  "github.com/chmike/ditp",
+		// 	New:  idr.NewIDRSerializerReuse,
 
-		BufferReuseMarshal: true,
-		TimeSupport:        TSFullTzOffset,
-		APIKind:            AKManual,
-		Notes:              []string{"low level IDR encoding demo with same nsec time encoding as benc"},
-	}, {
-		Name: "baseline",
-		URL:  "",
-		New:  baseline.NewBaselineSerializer,
+		// 	BufferReuseMarshal: true,
+		// 	TimeSupport:        TSFullTzOffset,
+		// 	APIKind:            AKManual,
+		// 	Notes:              []string{"low level IDR encoding demo with same nsec time encoding as benc"},
+		// }, {
+		// 	Name: "baseline",
+		// 	URL:  "",
+		// 	New:  baseline.NewBaselineSerializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-		Notes: []string{
-			"This is a manually written encoding, designed to be the fastest possible for this benchmark.",
-		},
-	}, {
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// 	Notes: []string{
+		// 		"This is a manually written encoding, designed to be the fastest possible for this benchmark.",
+		// 	},
+		// }, {
 		Name: "baseline/unsafe_reuse",
 		URL:  "",
 		New:  baseline.NewBaselineUnsafeSerializer,
@@ -515,36 +485,36 @@ var benchmarkCases = []BenchmarkCase{
 			"This is a manually written encoding, designed to be the fastest possible for this benchmark.",
 		},
 	}, {
-		Name: "baseline_rw",
-		URL:  "",
-		New:  baseline.NewBaselineReaderWriter,
+		// 	Name: "baseline_rw",
+		// 	URL:  "",
+		// 	New:  baseline.NewBaselineReaderWriter,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKManual,
-		Notes: []string{
-			"This is a manually written encoding, designed to be the fastest possible for this benchmark, using an io.Reader/io.Writer as the API.",
-		},
-	}, {
-		Name: "baseline_rw/unsafe_reuse",
-		URL:  "",
-		New:  baseline.NewBaselineReaderWriterUnsafeReuse,
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKManual,
+		// 	Notes: []string{
+		// 		"This is a manually written encoding, designed to be the fastest possible for this benchmark, using an io.Reader/io.Writer as the API.",
+		// 	},
+		// }, {
+		// 	Name: "baseline_rw/unsafe_reuse",
+		// 	URL:  "",
+		// 	New:  baseline.NewBaselineReaderWriterUnsafeReuse,
 
-		UnsafeStringUnmarshal: true,
-		BufferReuseMarshal:    true,
-		TimeSupport:           TSNoSupport,
-		APIKind:               AKManual,
-		Notes: []string{
-			"This is a manually written encoding, designed to be the fastest possible for this benchmark, using an io.Reader/io.Writer as the API.",
-		},
-	}, {
-		Name: "fastape",
-		URL:  "github.com/nazarifard/fastape",
-		New:  fastape.NewTape,
+		// 	UnsafeStringUnmarshal: true,
+		// 	BufferReuseMarshal:    true,
+		// 	TimeSupport:           TSNoSupport,
+		// 	APIKind:               AKManual,
+		// 	Notes: []string{
+		// 		"This is a manually written encoding, designed to be the fastest possible for this benchmark, using an io.Reader/io.Writer as the API.",
+		// 	},
+		// }, {
+		// 	Name: "fastape",
+		// 	URL:  "github.com/nazarifard/fastape",
+		// 	New:  fastape.NewTape,
 
-		UnsafeStringUnmarshal: true,
-		TimeSupport:           TSUnixNs,
-		APIKind:               AKManual,
-	}, {
+		// 	UnsafeStringUnmarshal: true,
+		// 	TimeSupport:           TSUnixNs,
+		// 	APIKind:               AKManual,
+		// }, {
 		Name: "protobuf3",
 		URL:  "https://github.com/protocolbuffers/protobuf-go",
 		New:  protobuf3.NewProtobuf3Serializer,
@@ -552,13 +522,13 @@ var benchmarkCases = []BenchmarkCase{
 		TimeSupport: TSRFC3339Ns,
 		APIKind:     AKCodegen,
 	}, {
-		Name: "flatbuffers25",
-		URL:  "https://github.com/google/flatbuffers/tree/master/go",
-		New:  flatbuffers25.NewFlatBuffers25Serializer,
+		// 	Name: "flatbuffers25",
+		// 	URL:  "https://github.com/google/flatbuffers/tree/master/go",
+		// 	New:  flatbuffers25.NewFlatBuffers25Serializer,
 
-		TimeSupport: TSNoSupport,
-		APIKind:     AKCodegen,
-	}, {
+		// 	TimeSupport: TSNoSupport,
+		// 	APIKind:     AKCodegen,
+		// }, {
 		Name: "flatbuffers25/unsafe_reuse",
 		URL:  "https://github.com/google/flatbuffers/tree/master/go",
 		New:  flatbuffers25.NewFlatBuffers25UnsafeReuseSerializer,

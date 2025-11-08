@@ -196,26 +196,26 @@
 			<h2>Metrics:</h2>
 			<div class="toggle-div">
 				<label><input type="checkbox" data-column="0" checked> Name</label>
-				<label><input type="checkbox" data-column="1" checked> Total Iterations</label>
+				<label><input type="checkbox" data-column="1"> Total Iterations</label>
 				<label><input type="checkbox" data-column="2"> Marshal Iterations</label>
 				<label><input type="checkbox" data-column="3"> Unmarshal Iterations</label>
-				<label><input type="checkbox" data-column="4" checked> Total ns/Op</label>
-				<label><input type="checkbox" data-column="5"> Marshal ns/Op</label>
-				<label><input type="checkbox" data-column="6"> Unmarshal ns/Op</label>
-				<label><input type="checkbox" data-column="7" checked> Total B/Op</label>
+				<label><input type="checkbox" data-column="4"> Total ns/Op</label>
+				<label><input type="checkbox" data-column="5" checked> Marshal ns/Op</label>
+				<label><input type="checkbox" data-column="6" checked> Unmarshal ns/Op</label>
+				<label><input type="checkbox" data-column="7"> Total B/Op</label>
 				<label><input type="checkbox" data-column="8"> Marshal B/Op</label>
 				<label><input type="checkbox" data-column="9"> Unmarshal B/Op</label>
-				<label><input type="checkbox" data-column="10" checked> Total allocs/Op</label>
+				<label><input type="checkbox" data-column="10"> Total allocs/Op</label>
 				<label><input type="checkbox" data-column="11"> Marshal allocs/Op</label>
 				<label><input type="checkbox" data-column="12"> Unmarshal allocs/Op</label>
 				<label><input type="checkbox" data-column="13" checked> Serialization Size</label>
-				<label><input type="checkbox" data-column="14" checked> Unsafe Str Unmarshal</label>
-				<label><input type="checkbox" data-column="15" checked> Buffer Reuse Marshal</label>
-				<label><input type="checkbox" data-column="15" checked> Deterministic Marshal</label>
-				<label><input type="checkbox" data-column="16" checked> Time Support</label>
-				<label><input type="checkbox" data-column="17" checked> API Kind</label>
-				<label><input type="checkbox" data-column="18" checked> URL</label>
-				<label><input type="checkbox" data-column="19" checked> Notes</label>
+				<label><input type="checkbox" data-column="14"> Unsafe Str Unmarshal</label>
+				<label><input type="checkbox" data-column="15"> Buffer Reuse Marshal</label>
+				<label><input type="checkbox" data-column="16" checked> Deterministic Marshal</label>
+				<label><input type="checkbox" data-column="17"> Time Support</label>
+				<label><input type="checkbox" data-column="18" checked> API Kind</label>
+				<label><input type="checkbox" data-column="19" checked> URL</label>
+				<label><input type="checkbox" data-column="20" checked> Notes</label>
 			</div>
 		</section>
 
@@ -266,8 +266,8 @@
 					if
 					the underlying backing byte array is modified.</li>
 				<li><b>Buffer Reuse Marshal</b>: Whether marshalling reuses its internal buffer for every operation.
-				<li><b>Deterministic Marshal</b>: Deterministic serialization guarantees the same bytes output for a particular data.
 				</li>
+				<li><b>Deterministic Marshal</b>: Deterministic serialization guarantees the same bytes output for a particular data.</li>
 				<li><b>Time Support</b>: How the serializer supports time.Time values. Options:
 					<ul>
 						<li><b>unix-ns</b>: Time since UNIX epoch as an int64, with nanosecond precision.</li>
@@ -398,16 +398,16 @@
 				order: [[4, 'asc']],
 				columns: [
 					{ data: 'name' },
-					{ data: 'total_iter_count' },
+					{ data: 'total_iter_count', visible: false },
 					{ data: 'marshal_iter_count', visible: false },
 					{ data: 'unmarshal_iter_count', visible: false },
-					{ data: 'total_ns_op' },
-					{ data: 'marshal_ns_op', visible: false },
-					{ data: 'unmarshal_ns_op', visible: false },
-					{ data: 'total_alloc_bytes' },
+					{ data: 'total_ns_op', visible: false },
+					{ data: 'marshal_ns_op', visible: true },
+					{ data: 'unmarshal_ns_op', visible: true },
+					{ data: 'total_alloc_bytes', visible: false },
 					{ data: 'marshal_alloc_bytes', visible: false },
 					{ data: 'unmarshal_alloc_bytes', visible: false },
-					{ data: 'total_allocs' },
+					{ data: 'total_allocs', visible: false },
 					{ data: 'marshal_allocs', visible: false },
 					{ data: 'unmarshal_allocs', visible: false },
 					{ data: 'serialization_size' },
@@ -415,13 +415,13 @@
 						data: 'unsafe_string_unmarshal',
 						render: function (data, type, row) {
 							return data ? 'yes' : 'no';
-						}
+						}, visible: false
 					},
 					{
 						data: 'buffer_reuse_marshal',
 						render: function (data, type, row) {
 							return data ? 'yes' : 'no';
-						}
+						}, visible: false
 					},
 					{
 						data: 'deterministic',
@@ -429,7 +429,7 @@
 							return data ? 'yes' : 'no';
 						}
 					},
-					{ data: 'time_support' },
+					{ data: 'time_support', visible: false },
 					{ data: 'api_kind' },
 					{ data: 'url' },
 					{ data: 'notes' }
@@ -480,8 +480,8 @@
 				table.rows().invalidate().draw();
 			});
 
-			$('#filterUnsafe').prop('checked', false);
-			$('#filterBuffer').prop('checked', false);
+			$('#filterUnsafe').prop('checked', true);
+			$('#filterBuffer').prop('checked', true);
 
 			table.rows().invalidate().draw();
 		});
