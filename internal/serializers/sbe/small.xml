@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   package="sbe"
+                   id="4"
+                   version="1"
+                   semanticVersion="1.0"
+                   description="SmallStruct schema"
+                   byteOrder="littleEndian">
+    <types>
+        <composite name="messageHeader" description="Message identifiers and length of message root">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+    </types>
+
+    <types>
+        <!-- 固定长度 ASCII 字符串类型 -->
+        <type name="ascii50" primitiveType="char" semanticType="String" length="50" characterEncoding="ASCII"/>
+        <type name="ascii20" primitiveType="char" semanticType="String" length="20" characterEncoding="ASCII"/>
+
+        <!-- 其他基础类型 -->
+        <type name="epochMillis" primitiveType="int64" semanticType="Epoch"/>
+        <type name="int32t" primitiveType="int32"/>
+        <type name="uint8t" primitiveType="uint8" semanticType="Boolean"/>
+        <type name="doublet" primitiveType="double"/>
+    </types>
+
+    <!-- Message: SmallStruct
+         固定区块长度按字段长度相加（Name 50 + BirthDay 8 + Phone 20 + Siblings 4 + Spouse 1 + Money 8 = 91）
+    -->
+    <sbe:message name="SmallStruct" id="12" semanticType="small" description="Generated from Go SmallStruct" blockLength="91">
+        <field name="Name" id="1" type="ascii50"/>
+        <field name="BirthDay" id="2" type="epochMillis"/>
+        <field name="Phone" id="3" type="ascii20"/>
+        <field name="Siblings" id="4" type="int32t"/>
+        <field name="Spouse" id="5" type="uint8t"/>
+        <field name="Money" id="6" type="doublet"/>
+    </sbe:message>
+</sbe:messageSchema>
