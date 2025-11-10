@@ -9,6 +9,7 @@ import (
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/jsoniter"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf3"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/pulsar"
+	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/sbe"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton"
 )
 
