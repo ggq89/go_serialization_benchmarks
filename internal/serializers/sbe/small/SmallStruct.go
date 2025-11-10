@@ -3,19 +3,21 @@
 package small
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"math"
+	"unicode/utf8"
 )
 
 type SmallStruct struct {
-	Name     [50]byte
 	BirthDay int64
-	Phone    [20]byte
 	Siblings int32
 	Spouse   uint8
 	Money    float64
+	Name     []uint8
+	Phone    []uint8
 }
 
 func (s *SmallStruct) Encode(_m *SbeGoMarshaller, _w io.Writer, doRangeCheck bool) error {
@@ -24,13 +26,7 @@ func (s *SmallStruct) Encode(_m *SbeGoMarshaller, _w io.Writer, doRangeCheck boo
 			return err
 		}
 	}
-	if err := _m.WriteBytes(_w, s.Name[:]); err != nil {
-		return err
-	}
 	if err := _m.WriteInt64(_w, s.BirthDay); err != nil {
-		return err
-	}
-	if err := _m.WriteBytes(_w, s.Phone[:]); err != nil {
 		return err
 	}
 	if err := _m.WriteInt32(_w, s.Siblings); err != nil {
@@ -42,32 +38,26 @@ func (s *SmallStruct) Encode(_m *SbeGoMarshaller, _w io.Writer, doRangeCheck boo
 	if err := _m.WriteFloat64(_w, s.Money); err != nil {
 		return err
 	}
+	if err := _m.WriteUint32(_w, uint32(len(s.Name))); err != nil {
+		return err
+	}
+	if err := _m.WriteBytes(_w, s.Name); err != nil {
+		return err
+	}
+	if err := _m.WriteUint32(_w, uint32(len(s.Phone))); err != nil {
+		return err
+	}
+	if err := _m.WriteBytes(_w, s.Phone); err != nil {
+		return err
+	}
 	return nil
 }
 
 func (s *SmallStruct) Decode(_m *SbeGoMarshaller, _r io.Reader, actingVersion uint16, blockLength uint16, doRangeCheck bool) error {
-	if !s.NameInActingVersion(actingVersion) {
-		for idx := 0; idx < 50; idx++ {
-			s.Name[idx] = s.NameNullValue()
-		}
-	} else {
-		if err := _m.ReadBytes(_r, s.Name[:]); err != nil {
-			return err
-		}
-	}
 	if !s.BirthDayInActingVersion(actingVersion) {
 		s.BirthDay = s.BirthDayNullValue()
 	} else {
 		if err := _m.ReadInt64(_r, &s.BirthDay); err != nil {
-			return err
-		}
-	}
-	if !s.PhoneInActingVersion(actingVersion) {
-		for idx := 0; idx < 20; idx++ {
-			s.Phone[idx] = s.PhoneNullValue()
-		}
-	} else {
-		if err := _m.ReadBytes(_r, s.Phone[:]); err != nil {
 			return err
 		}
 	}
@@ -95,6 +85,34 @@ func (s *SmallStruct) Decode(_m *SbeGoMarshaller, _r io.Reader, actingVersion ui
 	if actingVersion > s.SbeSchemaVersion() && blockLength > s.SbeBlockLength() {
 		io.CopyN(ioutil.Discard, _r, int64(blockLength-s.SbeBlockLength()))
 	}
+
+	if s.NameInActingVersion(actingVersion) {
+		var NameLength uint32
+		if err := _m.ReadUint32(_r, &NameLength); err != nil {
+			return err
+		}
+		if cap(s.Name) < int(NameLength) {
+			s.Name = make([]uint8, NameLength)
+		}
+		s.Name = s.Name[:NameLength]
+		if err := _m.ReadBytes(_r, s.Name); err != nil {
+			return err
+		}
+	}
+
+	if s.PhoneInActingVersion(actingVersion) {
+		var PhoneLength uint32
+		if err := _m.ReadUint32(_r, &PhoneLength); err != nil {
+			return err
+		}
+		if cap(s.Phone) < int(PhoneLength) {
+			s.Phone = make([]uint8, PhoneLength)
+		}
+		s.Phone = s.Phone[:PhoneLength]
+		if err := _m.ReadBytes(_r, s.Phone); err != nil {
+			return err
+		}
+	}
 	if doRangeCheck {
 		if err := s.RangeCheck(actingVersion, s.SbeSchemaVersion()); err != nil {
 			return err
@@ -104,33 +122,9 @@ func (s *SmallStruct) Decode(_m *SbeGoMarshaller, _r io.Reader, actingVersion ui
 }
 
 func (s *SmallStruct) RangeCheck(actingVersion uint16, schemaVersion uint16) error {
-	if s.NameInActingVersion(actingVersion) {
-		for idx := 0; idx < 50; idx++ {
-			if s.Name[idx] < s.NameMinValue() || s.Name[idx] > s.NameMaxValue() {
-				return fmt.Errorf("Range check failed on s.Name[%d] (%v < %v > %v)", idx, s.NameMinValue(), s.Name[idx], s.NameMaxValue())
-			}
-		}
-	}
-	for idx, ch := range s.Name {
-		if ch > 127 {
-			return fmt.Errorf("s.Name[%d]=%d failed ASCII validation", idx, ch)
-		}
-	}
 	if s.BirthDayInActingVersion(actingVersion) {
 		if s.BirthDay < s.BirthDayMinValue() || s.BirthDay > s.BirthDayMaxValue() {
 			return fmt.Errorf("Range check failed on s.BirthDay (%v < %v > %v)", s.BirthDayMinValue(), s.BirthDay, s.BirthDayMaxValue())
-		}
-	}
-	if s.PhoneInActingVersion(actingVersion) {
-		for idx := 0; idx < 20; idx++ {
-			if s.Phone[idx] < s.PhoneMinValue() || s.Phone[idx] > s.PhoneMaxValue() {
-				return fmt.Errorf("Range check failed on s.Phone[%d] (%v < %v > %v)", idx, s.PhoneMinValue(), s.Phone[idx], s.PhoneMaxValue())
-			}
-		}
-	}
-	for idx, ch := range s.Phone {
-		if ch > 127 {
-			return fmt.Errorf("s.Phone[%d]=%d failed ASCII validation", idx, ch)
 		}
 	}
 	if s.SiblingsInActingVersion(actingVersion) {
@@ -148,6 +142,12 @@ func (s *SmallStruct) RangeCheck(actingVersion uint16, schemaVersion uint16) err
 			return fmt.Errorf("Range check failed on s.Money (%v < %v > %v)", s.MoneyMinValue(), s.Money, s.MoneyMaxValue())
 		}
 	}
+	if !utf8.Valid(s.Name[:]) {
+		return errors.New("s.Name failed UTF-8 validation")
+	}
+	if !utf8.Valid(s.Phone[:]) {
+		return errors.New("s.Phone failed UTF-8 validation")
+	}
 	return nil
 }
 
@@ -156,7 +156,7 @@ func SmallStructInit(s *SmallStruct) {
 }
 
 func (*SmallStruct) SbeBlockLength() (blockLength uint16) {
-	return 91
+	return 21
 }
 
 func (*SmallStruct) SbeTemplateId() (templateId uint16) {
@@ -179,54 +179,8 @@ func (*SmallStruct) SbeSemanticVersion() (semanticVersion string) {
 	return "1.0"
 }
 
-func (*SmallStruct) NameId() uint16 {
-	return 1
-}
-
-func (*SmallStruct) NameSinceVersion() uint16 {
-	return 0
-}
-
-func (s *SmallStruct) NameInActingVersion(actingVersion uint16) bool {
-	return actingVersion >= s.NameSinceVersion()
-}
-
-func (*SmallStruct) NameDeprecated() uint16 {
-	return 0
-}
-
-func (*SmallStruct) NameMetaAttribute(meta int) string {
-	switch meta {
-	case 1:
-		return ""
-	case 2:
-		return ""
-	case 3:
-		return ""
-	case 4:
-		return "required"
-	}
-	return ""
-}
-
-func (*SmallStruct) NameMinValue() byte {
-	return byte(32)
-}
-
-func (*SmallStruct) NameMaxValue() byte {
-	return byte(126)
-}
-
-func (*SmallStruct) NameNullValue() byte {
-	return 0
-}
-
-func (s *SmallStruct) NameCharacterEncoding() string {
-	return "ASCII"
-}
-
 func (*SmallStruct) BirthDayId() uint16 {
-	return 2
+	return 1
 }
 
 func (*SmallStruct) BirthDaySinceVersion() uint16 {
@@ -267,54 +221,8 @@ func (*SmallStruct) BirthDayNullValue() int64 {
 	return math.MinInt64
 }
 
-func (*SmallStruct) PhoneId() uint16 {
-	return 3
-}
-
-func (*SmallStruct) PhoneSinceVersion() uint16 {
-	return 0
-}
-
-func (s *SmallStruct) PhoneInActingVersion(actingVersion uint16) bool {
-	return actingVersion >= s.PhoneSinceVersion()
-}
-
-func (*SmallStruct) PhoneDeprecated() uint16 {
-	return 0
-}
-
-func (*SmallStruct) PhoneMetaAttribute(meta int) string {
-	switch meta {
-	case 1:
-		return ""
-	case 2:
-		return ""
-	case 3:
-		return ""
-	case 4:
-		return "required"
-	}
-	return ""
-}
-
-func (*SmallStruct) PhoneMinValue() byte {
-	return byte(32)
-}
-
-func (*SmallStruct) PhoneMaxValue() byte {
-	return byte(126)
-}
-
-func (*SmallStruct) PhoneNullValue() byte {
-	return 0
-}
-
-func (s *SmallStruct) PhoneCharacterEncoding() string {
-	return "ASCII"
-}
-
 func (*SmallStruct) SiblingsId() uint16 {
-	return 4
+	return 2
 }
 
 func (*SmallStruct) SiblingsSinceVersion() uint16 {
@@ -356,7 +264,7 @@ func (*SmallStruct) SiblingsNullValue() int32 {
 }
 
 func (*SmallStruct) SpouseId() uint16 {
-	return 5
+	return 3
 }
 
 func (*SmallStruct) SpouseSinceVersion() uint16 {
@@ -398,7 +306,7 @@ func (*SmallStruct) SpouseNullValue() uint8 {
 }
 
 func (*SmallStruct) MoneyId() uint16 {
-	return 6
+	return 4
 }
 
 func (*SmallStruct) MoneySinceVersion() uint16 {
@@ -437,4 +345,72 @@ func (*SmallStruct) MoneyMaxValue() float64 {
 
 func (*SmallStruct) MoneyNullValue() float64 {
 	return math.NaN()
+}
+
+func (*SmallStruct) NameMetaAttribute(meta int) string {
+	switch meta {
+	case 1:
+		return ""
+	case 2:
+		return ""
+	case 3:
+		return ""
+	case 4:
+		return "required"
+	}
+	return ""
+}
+
+func (*SmallStruct) NameSinceVersion() uint16 {
+	return 0
+}
+
+func (s *SmallStruct) NameInActingVersion(actingVersion uint16) bool {
+	return actingVersion >= s.NameSinceVersion()
+}
+
+func (*SmallStruct) NameDeprecated() uint16 {
+	return 0
+}
+
+func (SmallStruct) NameCharacterEncoding() string {
+	return "UTF-8"
+}
+
+func (SmallStruct) NameHeaderLength() uint64 {
+	return 4
+}
+
+func (*SmallStruct) PhoneMetaAttribute(meta int) string {
+	switch meta {
+	case 1:
+		return ""
+	case 2:
+		return ""
+	case 3:
+		return ""
+	case 4:
+		return "required"
+	}
+	return ""
+}
+
+func (*SmallStruct) PhoneSinceVersion() uint16 {
+	return 0
+}
+
+func (s *SmallStruct) PhoneInActingVersion(actingVersion uint16) bool {
+	return actingVersion >= s.PhoneSinceVersion()
+}
+
+func (*SmallStruct) PhoneDeprecated() uint16 {
+	return 0
+}
+
+func (SmallStruct) PhoneCharacterEncoding() string {
+	return "UTF-8"
+}
+
+func (SmallStruct) PhoneHeaderLength() uint64 {
+	return 4
 }
