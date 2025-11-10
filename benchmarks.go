@@ -582,7 +582,7 @@ var benchmarkCases = []BenchmarkCase{
 
 		TimeSupport:           TSNoSupport,
 		APIKind:               AKCodegen,
-		UnsafeStringUnmarshal: false,
+		UnsafeStringUnmarshal: true,
 		BufferReuseMarshal:    false,
 	},
 }

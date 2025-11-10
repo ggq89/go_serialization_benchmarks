@@ -3,6 +3,7 @@ package sbe
 import (
 	"bytes"
 	"time"
+	"unsafe"
 
 	"github.com/alecthomas/go_serialization_benchmarks/goserbench"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/sbe/small"
@@ -73,9 +74,9 @@ func (s *SBESerializer) Unmarshal(bs []byte, o interface{}) (err error) {
 	}
 
 	v := o.(*goserbench.SmallStruct)
-	v.Name = string(a.Name)
+	v.Name = unsafeSliceToString(a.Name)
 	v.BirthDay = time.Unix(0, a.BirthDay)
-	v.Phone = string(a.Phone)
+	v.Phone = unsafeSliceToString(a.Phone)
 	v.Siblings = int(a.Siblings)
 	v.Spouse = getBool(a.Spouse)
 	v.Money = a.Money
@@ -103,6 +104,6 @@ func NewSBESerializer() goserbench.Serializer {
 	}
 }
 
-// func unsafeSliceToString(b []byte) string {
-// 	return *(*string)(unsafe.Pointer(&b))
-// }
+func unsafeSliceToString(b []byte) string {
+	return *(*string)(unsafe.Pointer(&b))
+}
