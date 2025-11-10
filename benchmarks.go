@@ -33,6 +33,7 @@ import (
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf3"
 	protobufdedis "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/protobuf_dedis"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/pulsar"
+	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/sbe"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/sereal"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/ssz"
@@ -574,5 +575,14 @@ var benchmarkCases = []BenchmarkCase{
 
 		TimeSupport: TSNoSupport,
 		APIKind:     AKCodegen,
+	}, {
+		Name: "SBE",
+		URL:  "https://github.com/aeron-io/simple-binary-encoding",
+		New:  sbe.NewSBESerializer,
+
+		TimeSupport:           TSNoSupport,
+		APIKind:               AKCodegen,
+		UnsafeStringUnmarshal: false,
+		BufferReuseMarshal:    false,
 	},
 }
