@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   package="small"
+                   id="4"
+                   version="1"
+                   semanticVersion="1.0"
+                   description="SmallStruct schema"
+                   byteOrder="littleEndian">
+    <types>
+        <composite name="messageHeader" description="Message identifiers and length of message root">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        
+        <!-- 引入变长字符串编码类型 -->
+        <composite name="varStringEncoding" description="Variable length UTF-8 String">
+            <type name="length" primitiveType="uint32" maxValue="1073741824"/>
+            <type name="varData" primitiveType="uint8" length="0" characterEncoding="UTF-8"/>
+        </composite>
+
+        <!-- 添加 BooleanType 枚举类型 -->
+        <enum name="BooleanType" encodingType="uint8" description="Boolean Type">
+            <validValue name="F" description="False value">0</validValue>
+            <validValue name="T" description="True value">1</validValue>
+        </enum>
+    </types>
+
+    <types>
+        <!-- 基础类型定义 -->
+        <type name="epochMillis" primitiveType="int64" semanticType="Epoch"/>
+        <type name="int32t" primitiveType="int32"/>
+        <type name="doublet" primitiveType="double"/>
+    </types>
+
+    <!-- blockLength 保持 21 (BirthDay 8 + Siblings 4 + Spouse 1 + Money 8 = 21) -->
+    <sbe:message name="SmallStruct" id="12" semanticType="small" description="Generated from Go SmallStruct" blockLength="21">
+        <field name="BirthDay" id="1" type="epochMillis"/>
+        <field name="Siblings" id="2" type="int32t"/>
+        <field name="Spouse" id="3" type="BooleanType"/>  <!-- 改为使用 BooleanType -->
+        <field name="Money" id="4" type="doublet"/>
+        <data name="Name" id="5" type="varStringEncoding"/>
+        <data name="Phone" id="6" type="varStringEncoding"/>
+    </sbe:message>
+</sbe:messageSchema>

@@ -544,5 +544,14 @@ var benchmarkCases = []BenchmarkCase{
 
 		TimeSupport: TSNoSupport,
 		APIKind:     AKCodegen,
+	}, {
+		Name: "SBE",
+		URL:  "https://github.com/aeron-io/simple-binary-encoding",
+		New:  sbe.NewSBESerializer,
+
+		TimeSupport:           TSNoSupport,
+		APIKind:               AKCodegen,
+		UnsafeStringUnmarshal: true,
+		BufferReuseMarshal:    false,
 	},
 }
