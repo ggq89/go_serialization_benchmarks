@@ -14,7 +14,7 @@ import (
 type SmallStruct struct {
 	BirthDay int64
 	Siblings int32
-	Spouse   uint8
+	Spouse   BooleanTypeEnum
 	Money    float64
 	Name     []uint8
 	Phone    []uint8
@@ -32,7 +32,7 @@ func (s *SmallStruct) Encode(_m *SbeGoMarshaller, _w io.Writer, doRangeCheck boo
 	if err := _m.WriteInt32(_w, s.Siblings); err != nil {
 		return err
 	}
-	if err := _m.WriteUint8(_w, s.Spouse); err != nil {
+	if err := s.Spouse.Encode(_m, _w); err != nil {
 		return err
 	}
 	if err := _m.WriteFloat64(_w, s.Money); err != nil {
@@ -68,10 +68,8 @@ func (s *SmallStruct) Decode(_m *SbeGoMarshaller, _r io.Reader, actingVersion ui
 			return err
 		}
 	}
-	if !s.SpouseInActingVersion(actingVersion) {
-		s.Spouse = s.SpouseNullValue()
-	} else {
-		if err := _m.ReadUint8(_r, &s.Spouse); err != nil {
+	if s.SpouseInActingVersion(actingVersion) {
+		if err := s.Spouse.Decode(_m, _r, actingVersion); err != nil {
 			return err
 		}
 	}
@@ -132,10 +130,8 @@ func (s *SmallStruct) RangeCheck(actingVersion uint16, schemaVersion uint16) err
 			return fmt.Errorf("Range check failed on s.Siblings (%v < %v > %v)", s.SiblingsMinValue(), s.Siblings, s.SiblingsMaxValue())
 		}
 	}
-	if s.SpouseInActingVersion(actingVersion) {
-		if s.Spouse < s.SpouseMinValue() || s.Spouse > s.SpouseMaxValue() {
-			return fmt.Errorf("Range check failed on s.Spouse (%v < %v > %v)", s.SpouseMinValue(), s.Spouse, s.SpouseMaxValue())
-		}
+	if err := s.Spouse.RangeCheck(actingVersion, schemaVersion); err != nil {
+		return err
 	}
 	if s.MoneyInActingVersion(actingVersion) {
 		if s.Money < s.MoneyMinValue() || s.Money > s.MoneyMaxValue() {
@@ -291,18 +287,6 @@ func (*SmallStruct) SpouseMetaAttribute(meta int) string {
 		return "required"
 	}
 	return ""
-}
-
-func (*SmallStruct) SpouseMinValue() uint8 {
-	return 0
-}
-
-func (*SmallStruct) SpouseMaxValue() uint8 {
-	return math.MaxUint8 - 1
-}
-
-func (*SmallStruct) SpouseNullValue() uint8 {
-	return math.MaxUint8
 }
 
 func (*SmallStruct) MoneyId() uint16 {
