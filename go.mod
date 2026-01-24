@@ -41,6 +41,11 @@ require (
 )
 
 require (
+	github.com/apache/fory/go/fory v0.0.0-20260123145215-c200874ea5c6 // indirect
+	github.com/spaolacci/murmur3 v1.1.0 // indirect
+)
+
+require (
 	github.com/DataDog/zstd v1.5.2 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/colega/zeropool v0.0.0-20230505084239-6fb4a4f75381 // indirect
@@ -74,7 +79,7 @@ require (
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
 	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
-	golang.org/x/sync v0.8.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
 	golang.org/x/sys v0.21.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

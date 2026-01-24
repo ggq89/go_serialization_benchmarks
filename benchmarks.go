@@ -17,6 +17,7 @@ import (
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/fastjson"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/flatbuffers"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/flatbuffers25"
+	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/fory"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gencode"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gogo"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/gotiny"
@@ -290,11 +291,11 @@ var benchmarkCases = []BenchmarkCase{
 		APIKind:     AKCodegen,
 	}, {
 		Name: "gogo/jsonpb",
-		URL:  "github.com/gogo/protobuf/proto",
+		URL:  "github.com/gogo/protobuf/jsonpb",
 		New:  gogo.NewGogoJsonSerializer,
 
 		TimeSupport: TSRFC3339Ns,
-		APIKind:     AKCodegen,
+		APIKind:     AKReflect,
 	}, {
 		Name: "colfer",
 		URL:  "github.com/pascaldekloe/colfer",
@@ -583,6 +584,15 @@ var benchmarkCases = []BenchmarkCase{
 		TimeSupport:           TSNoSupport,
 		APIKind:               AKCodegen,
 		UnsafeStringUnmarshal: true,
+		BufferReuseMarshal:    false,
+	}, {
+		Name: "fory",
+		URL:  "https://github.com/apache/fory",
+		New:  fory.NewForySerializer,
+
+		TimeSupport:           TSUnixNs,
+		APIKind:               AKReflect,
+		UnsafeStringUnmarshal: false,
 		BufferReuseMarshal:    false,
 	},
 }
