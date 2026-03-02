@@ -8,6 +8,7 @@ require (
 	github.com/Sereal/Sereal/Go/sereal v0.0.0-20250307140414-035be09f1bc8
 	github.com/alecthomas/binary v0.0.0-20231202071617-9b43cc962409
 	github.com/apache/fory/go/fory v0.0.0-20260123145215-c200874ea5c6
+	github.com/apache/thrift v0.22.0
 	github.com/calmh/xdr v1.2.0
 	github.com/chmike/ditp v0.0.0-20240629153544-f18168269eea
 	github.com/cosmos/cosmos-proto v1.0.0-beta.5

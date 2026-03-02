@@ -39,6 +39,7 @@ import (
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/shamaton"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/ssz"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/stdlib"
+	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/thrift"
 	"github.com/alecthomas/go_serialization_benchmarks/internal/serializers/ugorji"
 	xdrcalmh "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/xdr_calmh"
 	xdrdavecgh "github.com/alecthomas/go_serialization_benchmarks/internal/serializers/xdr_davecgh"
@@ -592,6 +593,16 @@ var benchmarkCases = []BenchmarkCase{
 
 		TimeSupport:           TSUnixNs,
 		APIKind:               AKReflect,
+		UnsafeStringUnmarshal: false,
+		BufferReuseMarshal:    false,
+	},
+	{
+		Name: "thrift",
+		URL:  "https://github.com/apache/thrift/tree/master/lib/go",
+		New:  thrift.NewThriftSerializer,
+
+		TimeSupport:           TSNoSupport,
+		APIKind:               AKCodegen,
 		UnsafeStringUnmarshal: false,
 		BufferReuseMarshal:    false,
 	},
